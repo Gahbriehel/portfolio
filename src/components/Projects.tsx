@@ -4,22 +4,22 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const projects = [
   {
-    title: "Herbetea E-commerce Website",
-    tools: ["React", "Node.js", "Tailwind"],
-    imageUrl: "/herbetea.png",
-    projectUrl: "https://herbetea.netlify.app/",
+    title: "Bellgold consulting Website",
+    tools: ["HTML", "Tailwind", "Vanilla Js", "Vercel"],
+    imageUrl: "/bellgold.png",
+    projectUrl: "https://bellgold-gn1o.vercel.app/",
   },
   {
-    title: "Craneo Blog",
-    tools: ["Next.js", "Sanity", "Tailwind", "Vercel"],
-    imageUrl: "/CraneoBlog.png",
-    projectUrl: "https://craneo-blog.vercel.app/",
+    title: "SKU Generator Microservice",
+    tools: ["Next.js", "TypeScript", "Tailwind", "Vercel"],
+    imageUrl: "/crow.png",
+    projectUrl: "https://crow-7nyj.vercel.app/",
   },
   {
-    title: "Project Management Dashboard",
-    tools: ["Next.js", "Socket.io", "Chart.js", "Tailwind"],
-    imageUrl: "/CraneoPM.png",
-    projectUrl: "https://dashboard.example.com",
+    title: "Ecommerce",
+    tools: ["React.js", "Tailwind"],
+    imageUrl: "/onecommerce.png",
+    projectUrl: "https://ecommerce-test0.vercel.app/",
   },
 ];
 

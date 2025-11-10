@@ -53,47 +53,47 @@ export default function App() {
             path="/"
             element={
               <>
-<div className="relative w-full flex flex-col items-center justify-center pt-10 min-h-[55vh] sm:pt-14 lg:pt-16">
-  <h4
-    className="absolute left-[15%] top-[18%] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light transform -translate-x-1/2"
-  >
-    <motion.span variants={animateOnLoad} initial="hidden" animate="show">
-      Your
-    </motion.span>
-  </h4>
-  
-  <h1
-    className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-panchang flex justify-center relative overflow-hidden text-center"
+                <div className="relative w-full flex flex-col items-center justify-center pt-10 min-h-[55vh] sm:pt-14 lg:pt-16">
+                  <h4
+                    className="absolute left-[15%] top-[18%] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light transform -translate-x-1/2"
+                  >
+                    <motion.span variants={animateOnLoad} initial="hidden" animate="show">
+                      Your
+                    </motion.span>
+                  </h4>
+
+                  <h1
+                    className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-panchang flex justify-center relative overflow-hidden text-center"
                     style={{
-    
-      fontSize: "clamp(2rem, 8vw, 20rem)", // Adjusted clamp for scaling
-      lineHeight: "1.3",
-      textShadow: "5px 4px 6px rgba(0, 0, 0, 0.3)", // Keep the text shadow for consistency
-       transform: "scaleY(1.4)", // Make the text taller (adjust the value as needed)
-    transformOrigin: "center"
+
+                      fontSize: "clamp(2rem, 8vw, 20rem)", // Adjusted clamp for scaling
+                      lineHeight: "1.3",
+                      textShadow: "5px 4px 6px rgba(0, 0, 0, 0.3)", // Keep the text shadow for consistency
+                      transform: "scaleY(1.4)", // Make the text taller (adjust the value as needed)
+                      transformOrigin: "center"
                     }}
-  >
-    {["F", "R", "O", "N", "T", "-", "E", "N", "D"].map((letter, index) => (
-      <motion.span
-        key={index}
-        className="inline-block"
-        variants={animateWobbleAndHover}
-        initial="hidden"
-        animate="show"
-        whileHover="hover"
-      >
-        {letter}
-      </motion.span>
-    ))}
-  </h1>
-  <h4
-    className="absolute right-[15%] bottom-[5%] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light transform translate-x-1/2"
-  >
-    <motion.span variants={animateOnLoad} initial="hidden" animate="show">
-      Guy
-    </motion.span>
-  </h4>
-</div>
+                  >
+                    {["F", "R", "O", "N", "T", "-", "E", "N", "D"].map((letter, index) => (
+                      <motion.span
+                        key={index}
+                        className="inline-block"
+                        variants={animateWobbleAndHover}
+                        initial="hidden"
+                        animate="show"
+                        whileHover="hover"
+                      >
+                        {letter}
+                      </motion.span>
+                    ))}
+                  </h1>
+                  <h4
+                    className="absolute right-[15%] bottom-[5%] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light transform translate-x-1/2"
+                  >
+                    <motion.span variants={animateOnLoad} initial="hidden" animate="show">
+                      Dev
+                    </motion.span>
+                  </h4>
+                </div>
 
                 <div>
                   <About />

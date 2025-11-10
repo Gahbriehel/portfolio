@@ -72,9 +72,9 @@ const About = () => {
           className="flex justify-center items-center bg-slate-300 rounded-full w-72 h-72 overflow-hidden"
         >
           <img
-            src="/cropped favor.png"
+            src="/IMG_0606.jpg"
             alt="Profile"
-            className="object-cover w-full h-full"
+            className=" w-full h-full"
           />
         </div>
       </div>

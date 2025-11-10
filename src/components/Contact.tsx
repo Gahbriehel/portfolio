@@ -3,10 +3,10 @@ import { FaLinkedin, FaGithub, FaTwitter, FaEnvelope } from "react-icons/fa";
 
 const ContactPage = () => {
   const icons = [
-    { icon: <FaLinkedin />, link: "https://linkedin.com/in/falola_favour", color: "#0077B5" },
-    { icon: <FaGithub />, link: "https://github.com/phayvour1", color: "#171515" },
-    { icon: <FaTwitter />, link: "https://twitter.com/falola_favour", color: "#1DA1F2" },
-    { icon: <FaEnvelope />, link: "mailto:pharlorlah700@gmail.com", color: "#D44638" },
+    { icon: <FaLinkedin />, link: "https://linkedin.com/in/gahbriehel", color: "#0077B5" },
+    { icon: <FaGithub />, link: "https://github.com/Gahbriehel", color: "#171515" },
+    { icon: <FaTwitter />, link: "https://twitter.com/Gahbriehel1", color: "#1DA1F2" },
+    { icon: <FaEnvelope />, link: "mailto:babatise002@gmail.com", color: "#D44638" },
   ];
 
   return (
@@ -31,7 +31,7 @@ const ContactPage = () => {
             key={index}
             initial={{ opacity: 0, y: 50 }}  // Initially offscreen
             whileInView={{ opacity: 1, y: 0 }}  // Animate when in view
-            transition={{ duration: 0.8, delay: index * 0.2 }}  // Stagger delay for each icon
+            transition={{ duration: 0.4, delay: index * 0.2 }}  // Stagger delay for each icon
             whileHover={{ scale: 1.4, color: item.color }}
             whileTap={{ scale: 0.9 }}
             className="text-3xl md:text-4xl cursor-pointer"  // Adjusted icon size here
