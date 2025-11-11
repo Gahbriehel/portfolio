@@ -138,7 +138,7 @@ const Navbar = () => {
                 {type === "router" ? (
                   <RouterLink
                     to={link}
-                    className="text-7xl font-light tracking-wider relative"
+                    className="text-2xl font-light tracking-wider relative"
                     onClick={() => setIsOpen(false)}
                   >
                     {name}
@@ -147,7 +147,7 @@ const Navbar = () => {
                 ) : (
                   <button
                     onClick={() => handleScrollNav(link)}
-                    className="cursor-pointer text-7xl font-light tracking-wider relative"
+                    className="cursor-pointer text-2xl font-light tracking-wider relative"
                   >
                     {name}
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-700 transition-all duration-300 ease-in-out group-hover:w-full"></span>
