@@ -10,7 +10,7 @@ const ContactPage = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-gray-100 to-gray-500 text-gray-800 font-signika p-0">
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-gray-100 to-gray-300 dark:from-gray-900 dark:to-gray-700 text-gray-800 dark:text-gray-200 font-signika p-0 transition-colors duration-300">
       {/* Heading Text Animation */}
       <motion.h1
         className="relative-content text-4xl md:text-5xl lg:text-5xl mb-10 text-center p-0"

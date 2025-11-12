@@ -52,10 +52,10 @@ const Projects = () => {
   }, []);
 
   return (
-    <div className="bg-gray-100 min-h-screen overflow-hidden p-4">
+    <div className="bg-gray-100 dark:bg-gray-900 min-h-screen overflow-hidden p-4">
       <div>
-        <h1 className="relative-content text-3xl text-gray-800 pt-10 font-signika">
-          Check out some of my works
+        <h1 className="relative-content text-4xl font-semibold text-gray-800 dark:text-gray-200 pt-10 ml-6 font-signika">
+          My work
         </h1>
       </div>
       {/* Projects container */}
@@ -79,14 +79,14 @@ const Projects = () => {
                 />
                 {/* Content Layer */}
                 <div
-                  className="text-content absolute inset-x-0 bottom-0 bg-gray-300 text-white p-8 flex flex-col items-center space-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-full transition-all duration-500 rounded-xl"
+                  className="text-content absolute inset-x-0 bottom-0 bg-gray-300 dark:bg-gray-700 text-white p-8 flex flex-col items-center space-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-full transition-all duration-500 rounded-xl"
                 >
-                  <h3 className="text-xl text-gray-600 font-signika">{project.title}</h3>
+                  <h3 className="text-xl text-gray-600 dark:text-gray-400 font-signika">{project.title}</h3>
                   <div className="flex justify-center space-x-4">
                     {project.tools.map((tool, idx) => (
                       <span
                         key={idx}
-                        className="text-sm font-light text-gray-300 bg-gray-700 px-4 py-2 rounded-full"
+                        className="text-sm font-light text-gray-300 dark:text-white bg-gray-700 dark:bg-gray-500 px-4 py-2 rounded-full"
                       >
                         {tool}
                       </span>

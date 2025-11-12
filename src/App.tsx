@@ -38,15 +38,11 @@ const animateOnLoad = {
 export default function App() {
   return (
     <Router>
-      <div className="relative bg-gradient-to-br from-gray-300 to-gray-100 text-gray-800">
+      <div className="relative bg-gradient-to-br from-gray-300 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-800 dark:text-gray-200 transition-colors duration-300">
         {/* Particles Background */}
         <ParticlesBackground />
-
-
-
         {/* Navbar */}
         <Navbar />
-
         <Routes>
           {/* Home Page */}
           <Route
@@ -55,17 +51,15 @@ export default function App() {
               <>
                 <div className="relative w-full flex flex-col items-center justify-center pt-10 min-h-[55vh] sm:pt-14 lg:pt-16">
                   <h4
-                    className="absolute left-[15%] top-[18%] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light transform -translate-x-1/2"
+                    className="absolute left-[15%] top-[18%] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light transform -translate-x-1/2 text-gray-800 dark:text-gray-200"
                   >
                     <motion.span variants={animateOnLoad} initial="hidden" animate="show">
                       Your
                     </motion.span>
                   </h4>
-
                   <h1
                     className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-panchang flex justify-center relative overflow-hidden text-center"
                     style={{
-
                       fontSize: "clamp(2rem, 8vw, 20rem)", // Adjusted clamp for scaling
                       lineHeight: "1.3",
                       textShadow: "5px 4px 6px rgba(0, 0, 0, 0.3)", // Keep the text shadow for consistency
@@ -87,14 +81,13 @@ export default function App() {
                     ))}
                   </h1>
                   <h4
-                    className="absolute right-[15%] bottom-[5%] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light transform translate-x-1/2"
+                    className="absolute right-[15%] bottom-[5%] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light transform translate-x-1/2 text-gray-800 dark:text-gray-200"
                   >
                     <motion.span variants={animateOnLoad} initial="hidden" animate="show">
                       Dev
                     </motion.span>
                   </h4>
                 </div>
-
                 <div>
                   <About />
                 </div>
