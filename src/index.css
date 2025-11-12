@@ -37,6 +37,9 @@ canvas {
   background-position: 50% 50%;
 }
 
+.dark #particles-js {
+  background-color: #111827;
+}
 
 /* Make sure the content has a higher z-index */
 .relative-content {
