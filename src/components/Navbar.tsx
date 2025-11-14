@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import { scroller } from "react-scroll";
 import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
 import { BsMoon } from "react-icons/bs";
+import { MdOutlineMail } from "react-icons/md";
+import { FaCode, FaDatabase, FaGitAlt, FaLaptopCode } from "react-icons/fa6";
+
 
 
 const Navbar = () => {
@@ -20,7 +23,6 @@ const Navbar = () => {
     const savedTheme = localStorage.getItem("theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
-    console.log(`Saved theme: ${savedTheme}, System prefers: ${prefersDark}, Setting to: ${initialTheme}`); // Debug
     setTheme(initialTheme);
   }, []);
 
@@ -104,22 +106,6 @@ const Navbar = () => {
           </RouterLink>
         </h1>
 
-        {/* Desktop Theme Switcher */}
-        <div
-          className="hidden md:block cursor-pointer text-2xl"
-          onClick={toggleTheme}
-        >
-          {theme === "light" ? (
-            <span role="img" aria-label="Switch to dark mode">
-              <BsMoon />
-            </span>
-          ) : (
-            <span role="img" aria-label="Switch to light mode">
-              ☀️
-            </span>
-          )}
-        </div>
-
         {/* Hamburger */}
         <button
           className="md:hidden text-3xl focus:outline-none ml-4 relative"
@@ -151,23 +137,67 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-8">
           {[
-            { name: "Resume", link: "/resume", type: "router" },
-            { name: "Projects", link: "projects", type: "scroll" },
-            { name: "Contact", link: "contact", type: "scroll" },
+            {
+              name: (
+                <>
+                  <span className="flex items-center">
+                    <FaLaptopCode className="inline mr-1 text-lg" /> Resume
+                  </span>
+                </>
+              ),
+              link: "/resume",
+              type: "router"
+            },
+            {
+              name: (
+                <>
+                  <span className="flex items-center">
+                    <FaGitAlt className="inline mr-1 text-lg" /> Projects
+                  </span>
+                </>
+              ),
+              link: "projects",
+              type: "scroll"
+            },
+            {
+              name: (
+                <>
+                  <span className="flex items-center">
+                    <FaCode className="inline mr-1 text-lg" /> Toolkit
+                  </span>
+                </>
+              ),
+              link: "toolkit",
+              type: "scroll"
+            },
+            {
+              name: (
+                <>
+                  <span className="flex items-center">
+                    <MdOutlineMail className="inline mr-1 text-lg" />Contact
+                  </span>
+                </>
+              ),
+              link: "contact",
+              type: "scroll"
+            },
           ].map(({ name, link, type }) => (
-            <li key={name} className="relative group">
+            <li key={link} className="relative group">
               {type === "router" ? (
                 <RouterLink
                   to={link}
-                  className="hover:text-gray-400 dark:hover:text-gray-500 text-lg relative transition-colors"
+                  className="hover:text-[#083050] dark:hover:text-gray-500 text-lg relative transition-colors"
                 >
                   <span>{name}</span>
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current transition-all duration-300 ease-in-out group-hover:w-full"></span>
+                  <span
+                    className={`absolute bottom-0 left-0 h-0.5 bg-current transition-all duration-300 ease-in-out ${location.pathname === link ? "w-full bg-blue-100" : "w-0 group-hover:w-full"
+                      }`}
+                  ></span>
                 </RouterLink>
               ) : (
                 <button
                   onClick={() => handleScrollNav(link)}
-                  className="cursor-pointer hover:text-gray-400 dark:hover:text-gray-500 text-lg relative transition-colors"
+                  className="cursor-pointer hover:text-[#083050] dark:hover:text-gray-500 text-lg relative transition-colors"
                 >
                   <span>{name}</span>
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current transition-all duration-300 ease-in-out group-hover:w-full"></span>
@@ -205,6 +235,7 @@ const Navbar = () => {
             {[
               { name: "Resume", link: "/resume", type: "router" },
               { name: "Projects", link: "projects", type: "scroll" },
+              { name: "Toolkit", link: "toolkit", type: "scroll" },
               { name: "Contact", link: "contact", type: "scroll" },
             ].map(({ name, link, type }) => (
               <li key={name} className="py-4 gap-3 relative group">
@@ -230,6 +261,23 @@ const Navbar = () => {
             ))}
           </motion.ul>
         )}
+
+
+        {/* Desktop Theme Switcher */}
+        <div
+          className="hidden md:block cursor-pointer text-2xl"
+          onClick={toggleTheme}
+        >
+          {theme === "light" ? (
+            <span role="img" aria-label="Switch to dark mode">
+              <BsMoon />
+            </span>
+          ) : (
+            <span role="img" aria-label="Switch to light mode">
+              ☀️
+            </span>
+          )}
+        </div>
       </div>
     </nav>
   );
