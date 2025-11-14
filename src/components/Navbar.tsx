@@ -233,12 +233,52 @@ const Navbar = () => {
               </button>
             </li>
             {[
-              { name: "Resume", link: "/resume", type: "router" },
-              { name: "Projects", link: "projects", type: "scroll" },
-              { name: "Toolkit", link: "toolkit", type: "scroll" },
-              { name: "Contact", link: "contact", type: "scroll" },
+              {
+                name: (
+                  <>
+                    <span className="flex items-center">
+                      <FaLaptopCode className="inline mr-1 text-lg" /> Resume
+                    </span>
+                  </>
+                ),
+                link: "/resume",
+                type: "router"
+              },
+              {
+                name: (
+                  <>
+                    <span className="flex items-center">
+                      <FaGitAlt className="inline mr-1 text-lg" /> Projects
+                    </span>
+                  </>
+                ),
+                link: "projects",
+                type: "scroll"
+              },
+              {
+                name: (
+                  <>
+                    <span className="flex items-center">
+                      <FaCode className="inline mr-1 text-lg" /> Toolkit
+                    </span>
+                  </>
+                ),
+                link: "toolkit",
+                type: "scroll"
+              },
+              {
+                name: (
+                  <>
+                    <span className="flex items-center">
+                      <MdOutlineMail className="inline mr-1 text-lg" />Contact
+                    </span>
+                  </>
+                ),
+                link: "contact",
+                type: "scroll"
+              },
             ].map(({ name, link, type }) => (
-              <li key={name} className="py-4 gap-3 relative group">
+              <li key={link} className="py-4 gap-3 relative group">
                 {type === "router" ? (
                   <RouterLink
                     to={link}
