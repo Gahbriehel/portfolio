@@ -4,7 +4,7 @@ import { scroller } from "react-scroll";
 import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
 import { BsMoon } from "react-icons/bs";
 import { MdOutlineMail } from "react-icons/md";
-import { FaCode, FaDatabase, FaGitAlt, FaLaptopCode } from "react-icons/fa6";
+import { FaCode, FaGitAlt, FaLaptopCode } from "react-icons/fa6";
 
 
 
