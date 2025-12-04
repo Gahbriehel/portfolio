@@ -94,7 +94,7 @@ const ToolkitPage = () => {
                     return (
                       <div
                         key={index}
-                        className="flex items-center gap-3 p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:scale-105 hover:translate-x-1 transition-all duration-200 bg-gray-50 dark:bg-gray-700/50"
+                        className="flex items-center gap-3 p-3 rounded-lg border border-gray-200 dark:border-gray-700  dark:hover:border-gray-600 hover:scale-105 hover:translate-y-1 transition-all duration-200 bg-gray-50 dark:bg-gray-700/50 shadow hover:shadow-eal-100/40 cursor-pointer"
                       >
                         <div className="text-2xl">
                           <IconComponent className={item.color} />

@@ -12,8 +12,8 @@ const Navbar = () => {
   const fonts = ["font-serif", "font-signika", "font-sans"];
   const [currentFont, setCurrentFont] = useState(fonts[0]);
   const [isOpen, setIsOpen] = useState(false);
-  const [theme, setTheme] = useState("light"); // 'light' or 'dark'
-  const [debugKey, setDebugKey] = useState(0); // Forces re-render for testing
+  const [theme, setTheme] = useState("light"); 
+  const [debugKey, setDebugKey] = useState(0); 
 
   const location = useLocation();
   const navigate = useNavigate();

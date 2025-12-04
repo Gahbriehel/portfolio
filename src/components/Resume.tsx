@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const Resume = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const resumeViewUrl = "https://drive.google.com/file/d/1oEVGgJMMg7rzKf4LkpXUdggxy8Zm0M8L/preview"; // Viewable Google Drive link
+  const resumeViewUrl = "https://drive.google.com/file/d/1ney5h5zUvC2bUkmph89_GuTitQmjhgC5/preview"; 
 
   return (
     <div className="bg-gray-100 dark:bg-gray-900 min-h-screen flex flex-col items-center justify-center relative">
