@@ -10,7 +10,6 @@ const About = () => {
   const textRefs = useRef<HTMLParagraphElement[]>([]);
 
   useEffect(() => {
-    // Animate profile picture
     if (profileRef.current) {
       gsap.fromTo(
         profileRef.current,
@@ -85,60 +84,59 @@ const About = () => {
           ref={(el) => textRefs.current.push(el!)}
           className="text-2xl md:text-2xl leading-relaxed mx-auto max-w-3xl"
         >
-          I build{" "}
+          I engineer{" "}
           <motion.span
             whileHover={hoverEffect}
             style={cursorStyle}
             className="font-bold text-gray-800 dark:text-gray-200 text-2xl md:text-2xl"
           >
-            pixel-perfect
+            scalable, secure systems
           </motion.span>{" "}
-          and{" "}
+          using{" "}
           <motion.span
             whileHover={hoverEffect}
             style={cursorStyle}
             className="font-bold text-gray-800 dark:text-gray-200 text-2xl md:text-2xl"
           >
-            high-performance web Applications
+            modern architectural patterns
           </motion.span>{" "}
-          that are not only visually stunning but also intuitive enough for anyone to use.
+          that prioritize performance, maintainability, and type safety.
         </p>
         <p
           ref={(el) => textRefs.current.push(el!)}
           className="text-2xl md:text-2xl leading-relaxed mt-8 mx-auto max-w-3xl"
         >
-          I’m not just a{" "}
+          I go beyond simple implementation to{" "}
           <motion.span
             whileHover={hoverEffect}
             style={cursorStyle}
             className="font-bold text-gray-800 dark:text-gray-200 text-2xl md:text-2xl"
           >
-            frontend developer
+            architect complex solutions
           </motion.span>
-          —I’m a problem-solver and creator who thrives on being part of the entire
-          product development process. From{" "}
+          . From{" "}
           <motion.span
             whileHover={hoverEffect}
             style={cursorStyle}
             className="font-bold text-gray-900 dark:text-gray-100 text-2xl md:text-2xl"
           >
-            ideating solutions
+            optimizing rendering performance
           </motion.span>{" "}
-          to engineering seamless functionality, I bring passion and precision to
-          every project.
+          to designing modular component systems, I ensure technical excellence at
+          every layer of the stack.
         </p>
 
         <p
           ref={(el) => textRefs.current.push(el!)}
           className="text-2xl md:text-2xl leading-relaxed mt-8 mx-auto max-w-3xl"
         >
-          Let’s create something{" "}
+          Let’s build software that determines the{" "}
           <motion.span
             whileHover={hoverEffect}
             style={cursorStyle}
             className="font-bold text-gray-900 dark:text-gray-100 text-3xl md:text-3xl"
           >
-            extraordinary
+            future of the web
           </motion.span>{" "}
         </p>
       </section>
