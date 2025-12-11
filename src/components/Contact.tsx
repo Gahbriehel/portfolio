@@ -96,7 +96,7 @@ const ContactPage = () => {
                   btn.innerText = originalText;
                   btn.disabled = false;
                 });
-            }} className="flex flex-col gap-6">
+            }} className="flex flex-col gap-8">
               <input type="hidden" name="time" value={new Date().toLocaleString()} />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -106,7 +106,7 @@ const ContactPage = () => {
                     id="name"
                     name="name"
                     required
-                    className="w-full px-4 py-3 rounded-lg bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0077B5] transition-all"
+                    className="w-full p-4 rounded-lg bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0077B5] transition-all"
                     placeholder="John Doe"
                   />
                 </div>
@@ -117,7 +117,7 @@ const ContactPage = () => {
                     id="email"
                     name="email"
                     required
-                    className="w-full px-4 py-3 rounded-lg bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0077B5] transition-all"
+                    className="w-full p-4 rounded-lg bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0077B5] transition-all"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -130,7 +130,7 @@ const ContactPage = () => {
                   id="subject"
                   name="subject"
                   required
-                  className="w-full px-4 py-3 rounded-lg bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0077B5] transition-all"
+                  className="w-full p-4 rounded-lg bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0077B5] transition-all"
                   placeholder="Project Inquiry"
                 />
               </div>
@@ -142,14 +142,14 @@ const ContactPage = () => {
                   name="message"
                   required
                   rows={5}
-                  className="w-full px-4 py-3 rounded-lg bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0077B5] transition-all resize-none"
+                  className="w-full p-4 rounded-lg bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0077B5] transition-all resize-none"
                   placeholder="Tell me about your project..."
                 ></textarea>
               </div>
 
               <button
                 type="submit"
-                className="mt-4 w-full bg-[#0077B5] hover:bg-[#006097] text-white font-bold py-4 px-6 rounded-lg transition-colors duration-300 transform hover:scale-[1.01] shadow-lg"
+                className="mt-4 w-full bg-[#0077B5] hover:bg-[#006097] text-white font-bold text-sm p-4 rounded-lg transition-colors duration-300 transform hover:scale-[1.01] shadow-lg"
               >
                 Send Message
               </button>
