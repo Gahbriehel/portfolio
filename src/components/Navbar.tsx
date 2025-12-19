@@ -88,6 +88,9 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex justify-between items-center">
         <h1 className="mt-2 text-2xl font flex items-center gap-1">
+          <span role="img" aria-label="Christmas hat" className="mr-2">
+            🎅🏾
+          </span>
           <RouterLink to="/" className="flex items-center gap-1">
             gahbriehel.
             <motion.span
