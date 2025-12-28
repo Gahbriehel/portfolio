@@ -10,7 +10,7 @@ import ParticlesBackground from "./components/ParticlesBackground";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ToolkitPage from "./components/Toolkit";
 import { ChristmasEffects } from "react-christmas-effects";
-// import "react-christmas-effects/dist/index.css";
+import "react-christmas-effects/dist/index.css";
 
 
 const animateWobbleAndHover = {
