@@ -47,7 +47,7 @@ export default function App() {
       <>
         <div className="relative bg-gradient-to-br from-gray-300 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-800 dark:text-gray-200 transition-colors duration-300">
           <ParticlesBackground />
-          <ChristmasEffects showText={false} fireworks={false} />
+          <ChristmasEffects showText={false} fireworks={false} snowflakeCount={50} />
           <motion.div id="scroll-indicator"
             style={{
               scaleX: scrollYProgress,
