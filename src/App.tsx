@@ -7,9 +7,11 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Resume from "./components/Resume";
 import ParticlesBackground from "./components/ParticlesBackground";
-import Snowfall from 'react-snowfall';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ToolkitPage from "./components/Toolkit";
+import { ChristmasEffects } from "react-christmas-effects";
+import "react-christmas-effects/dist/index.css";
+
 
 const animateWobbleAndHover = {
   hidden: { rotate: 0, scale: 1 },
@@ -45,8 +47,7 @@ export default function App() {
       <>
         <div className="relative bg-gradient-to-br from-gray-300 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-800 dark:text-gray-200 transition-colors duration-300">
           <ParticlesBackground />
-          <Snowfall color="#237185ff" snowflakeCount={200}/>
-          <Snowfall color="#cf1a1aff" />
+          <ChristmasEffects showText={false} fireworks={false} />
           <motion.div id="scroll-indicator"
             style={{
               scaleX: scrollYProgress,
