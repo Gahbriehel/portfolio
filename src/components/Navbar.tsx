@@ -12,8 +12,8 @@ const Navbar = () => {
   const fonts = ["font-serif", "font-signika", "font-sans"];
   const [currentFont, setCurrentFont] = useState(fonts[0]);
   const [isOpen, setIsOpen] = useState(false);
-  const [theme, setTheme] = useState("light"); 
-  const [debugKey, setDebugKey] = useState(0); 
+  const [theme, setTheme] = useState("light");
+  const [debugKey, setDebugKey] = useState(0);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -58,9 +58,9 @@ const Navbar = () => {
         scroller.scrollTo(section, {
           duration: 500,
           smooth: true,
-          offset: -50, 
+          offset: -50,
         });
-      }, 400); 
+      }, 400);
     } else {
       scroller.scrollTo(section, {
         duration: 500,
@@ -88,9 +88,9 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex justify-between items-center">
         <h1 className="mt-2 text-2xl font flex items-center gap-1">
-          <span role="img" aria-label="Christmas hat" className="mr-2">
+          {/* <span role="img" aria-label="Christmas hat" className="mr-2">
             🎅🏾
-          </span>
+          </span> */}
           <RouterLink to="/" className="flex items-center gap-1">
             gahbriehel.
             <motion.span
