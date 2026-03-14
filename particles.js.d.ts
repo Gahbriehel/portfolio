@@ -1,1 +1,1 @@
-declare module 'particles.js';
+declare module "particles.js";

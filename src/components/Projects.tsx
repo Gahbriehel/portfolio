@@ -6,28 +6,36 @@ import { FaArrowRight, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 const projects = [
   {
     title: "Sales, Inventory, production Management Application",
-    description: "A comprehensive retail management system enabling seamless inventory tracking, sales analytics, supplier management, production management, target setting, and real-time reporting across multiple branches.",
+    description:
+      "A comprehensive retail management system enabling seamless inventory tracking, sales analytics, supplier management, production management, target setting, and real-time reporting across multiple branches.",
     tools: ["NextJs", "TypeScript", "TailwindCSS", "Redux", "Tanstack"],
-    images: ["/images/oneflare01.png", "/images/oneflare02.png", "/images/oneflare03.png"],
+    images: [
+      "/images/oneflare01.png",
+      "/images/oneflare02.png",
+      "/images/oneflare03.png",
+    ],
     projectUrl: "https://pos.oneflaretech.com",
   },
   {
     title: "Bellgold consulting Website",
-    description: "A professional consulting agency website with modern design, built for showcasing services with smooth animations.",
+    description:
+      "A professional consulting agency website with modern design, built for showcasing services with smooth animations.",
     tools: ["HTML", "Tailwind", "Vanilla Js", "Vercel"],
     images: ["/bellgold.png"],
     projectUrl: "https://bellgold-gn1o.vercel.app/",
   },
   {
     title: "SKU Generator Microservice",
-    description: "A specialized microservice designed to help e-commerce businesses generate and manage Stock Keeping Units (SKUs) effectively and reliably.",
+    description:
+      "A specialized microservice designed to help e-commerce businesses generate and manage Stock Keeping Units (SKUs) effectively and reliably.",
     tools: ["Next.js", "TypeScript", "Tailwind", "Vercel"],
     images: ["/crow.png"],
     projectUrl: "https://crow-7nyj.vercel.app/",
   },
   {
     title: "Ecommerce",
-    description: "An intuitive and fast e-commerce platform built with React, focusing on delivering an excellent user shopping experience and seamless navigation.",
+    description:
+      "An intuitive and fast e-commerce platform built with React, focusing on delivering an excellent user shopping experience and seamless navigation.",
     tools: ["React.js", "Tailwind"],
     images: ["/onecommerce.png"],
     projectUrl: "https://ecommerce-test0.vercel.app/",
@@ -36,7 +44,19 @@ const projects = [
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ProjectCard = ({ project, index }: { project: any; index: number }) => {
+const ProjectCard = ({
+  project,
+  index,
+}: {
+  project: {
+    title: string;
+    description: string;
+    tools: string[];
+    images: string[];
+    projectUrl: string;
+  };
+  index: number;
+}) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -57,14 +77,23 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => {
   const prevImage = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
+    setCurrentImageIndex(
+      (prev) => (prev - 1 + project.images.length) % project.images.length,
+    );
   };
 
   return (
-    <div className={`project-card-${index} bg-white dark:bg-[#121212] border border-green-700 dark:border-green-800 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col h-full group/card`}>
+    <div
+      className={`project-card-${index} bg-white dark:bg-[#121212] border border-green-700 dark:border-green-800 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col h-full group/card`}
+    >
       {/* Image Carousel */}
       <div className="relative w-full aspect-video bg-gray-100 dark:bg-gray-900 overflow-hidden group mb-4 border-b border-green-700 dark:border-gray-800">
-        <a href={project.projectUrl} target="_blank" rel="noopener noreferrer" className="absolute inset-0 block z-0">
+        <a
+          href={project.projectUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute inset-0 block z-0"
+        >
           <div
             className="flex h-full w-full transition-transform duration-500 ease-out"
             style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
@@ -123,7 +152,12 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => {
 
       {/* Content Layer */}
       <div className="p-5 flex flex-col flex-grow">
-        <a href={project.projectUrl} target="_blank" rel="noopener noreferrer" className="inline-block group-hover/card:text-green-500 transition-colors duration-300">
+        <a
+          href={project.projectUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block group-hover/card:text-green-500 transition-colors duration-300"
+        >
           <h3 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-2 md:mb-3 font-signika decoration-2 decoration-green-500 underline-offset-4 group-hover/card:underline">
             {project.title}
           </h3>
@@ -151,7 +185,7 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => {
 const Projects = () => {
   useEffect(() => {
     // Reset any previous ScrollTriggers for these classes if component remounts
-    ScrollTrigger.getAll().forEach(t => t.kill());
+    ScrollTrigger.getAll().forEach((t) => t.kill());
 
     projects.forEach((_, index) => {
       gsap.fromTo(
@@ -172,13 +206,16 @@ const Projects = () => {
           },
           duration: 0.8,
           ease: "power3.out",
-        }
+        },
       );
     });
   }, []);
 
   return (
-    <section id="projects" className="bg-gray-100 dark:bg-gray-900 min-h-screen py-20 px-4 sm:px-6 lg:px-8">
+    <section
+      id="projects"
+      className="bg-gray-100 dark:bg-gray-900 min-h-screen py-20 px-4 sm:px-6 lg:px-8"
+    >
       <div className="max-w-7xl mx-auto w-full">
         {/* Header section */}
         <div className="mb-14 text-center">

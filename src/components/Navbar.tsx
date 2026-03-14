@@ -6,8 +6,6 @@ import { BsMoon } from "react-icons/bs";
 import { MdOutlineMail } from "react-icons/md";
 import { FaCode, FaGitAlt, FaLaptopCode } from "react-icons/fa6";
 
-
-
 const Navbar = () => {
   const fonts = ["font-serif", "font-signika", "font-sans"];
   const [currentFont, setCurrentFont] = useState(fonts[0]);
@@ -21,7 +19,9 @@ const Navbar = () => {
   // Initialize theme from localStorage or system preference
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
     const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
     setTheme(initialTheme);
   }, []);
@@ -47,6 +47,7 @@ const Navbar = () => {
       setCurrentFont(randomFont);
     }, 100);
     return () => clearInterval(intervalId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // 🧠 Scroll helper — ensures scroll works even after navigation
@@ -78,8 +79,7 @@ const Navbar = () => {
     });
   };
 
-  useEffect(() => {
-  }, [debugKey]);
+  useEffect(() => {}, [debugKey]);
 
   return (
     <nav
@@ -149,7 +149,7 @@ const Navbar = () => {
                 </>
               ),
               link: "/resume",
-              type: "router"
+              type: "router",
             },
             {
               name: (
@@ -160,7 +160,7 @@ const Navbar = () => {
                 </>
               ),
               link: "projects",
-              type: "scroll"
+              type: "scroll",
             },
             {
               name: (
@@ -171,18 +171,19 @@ const Navbar = () => {
                 </>
               ),
               link: "toolkit",
-              type: "scroll"
+              type: "scroll",
             },
             {
               name: (
                 <>
                   <span className="flex items-center">
-                    <MdOutlineMail className="inline mr-1 text-lg" />Contact
+                    <MdOutlineMail className="inline mr-1 text-lg" />
+                    Contact
                   </span>
                 </>
               ),
               link: "contact",
-              type: "scroll"
+              type: "scroll",
             },
           ].map(({ name, link, type }) => (
             <li key={link} className="relative group">
@@ -193,8 +194,11 @@ const Navbar = () => {
                 >
                   <span>{name}</span>
                   <span
-                    className={`absolute bottom-0 left-0 h-0.5 bg-current transition-all duration-300 ease-in-out ${location.pathname === link ? "w-full bg-blue-100" : "w-0 group-hover:w-full"
-                      }`}
+                    className={`absolute bottom-0 left-0 h-0.5 bg-current transition-all duration-300 ease-in-out ${
+                      location.pathname === link
+                        ? "w-full bg-blue-100"
+                        : "w-0 group-hover:w-full"
+                    }`}
                   ></span>
                 </RouterLink>
               ) : (
@@ -225,13 +229,13 @@ const Navbar = () => {
                 className="cursor-pointer text-lg font-light tracking-wider relative transition-colors"
               >
                 {theme === "light" ? (
-                  <><span className="flex gap-2 items-center">
-                    <BsMoon className="text-xl" /> Dark Mode</span>
+                  <>
+                    <span className="flex gap-2 items-center">
+                      <BsMoon className="text-xl" /> Dark Mode
+                    </span>
                   </>
                 ) : (
-                  <>
-                    ☀️ Light Mode
-                  </>
+                  <>☀️ Light Mode</>
                 )}
               </button>
             </li>
@@ -245,7 +249,7 @@ const Navbar = () => {
                   </>
                 ),
                 link: "/resume",
-                type: "router"
+                type: "router",
               },
               {
                 name: (
@@ -256,7 +260,7 @@ const Navbar = () => {
                   </>
                 ),
                 link: "projects",
-                type: "scroll"
+                type: "scroll",
               },
               {
                 name: (
@@ -267,18 +271,19 @@ const Navbar = () => {
                   </>
                 ),
                 link: "toolkit",
-                type: "scroll"
+                type: "scroll",
               },
               {
                 name: (
                   <>
                     <span className="flex items-center">
-                      <MdOutlineMail className="inline mr-1 text-lg" />Contact
+                      <MdOutlineMail className="inline mr-1 text-lg" />
+                      Contact
                     </span>
                   </>
                 ),
                 link: "contact",
-                type: "scroll"
+                type: "scroll",
               },
             ].map(({ name, link, type }) => (
               <li key={link} className="py-4 gap-3 relative group">
@@ -304,7 +309,6 @@ const Navbar = () => {
             ))}
           </motion.ul>
         )}
-
 
         {/* Desktop Theme Switcher */}
         <div
