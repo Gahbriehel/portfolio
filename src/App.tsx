@@ -12,7 +12,6 @@ import ToolkitPage from "./components/Toolkit";
 import { ChristmasEffects } from "react-christmas-effects";
 import "react-christmas-effects/dist/index.css";
 
-
 const animateWobbleAndHover = {
   hidden: { rotate: 0, scale: 1 },
   show: {
@@ -40,15 +39,20 @@ const animateOnLoad = {
 };
 
 export default function App() {
-  const { scrollYProgress } = useScroll()
+  const { scrollYProgress } = useScroll();
 
   return (
     <Router>
       <>
         <div className="relative bg-gradient-to-br from-gray-300 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-800 dark:text-gray-200 transition-colors duration-300">
           <ParticlesBackground />
-          <ChristmasEffects showText={false} fireworks={false} snowflakeCount={50} />
-          <motion.div id="scroll-indicator"
+          <ChristmasEffects
+            showText={false}
+            fireworks={false}
+            snowflakeCount={50}
+          />
+          <motion.div
+            id="scroll-indicator"
             style={{
               scaleX: scrollYProgress,
               position: "fixed",
@@ -58,8 +62,9 @@ export default function App() {
               height: 6,
               originX: 0,
               backgroundColor: "#12294bff",
-              zIndex: 9999
-            }} />
+              zIndex: 9999,
+            }}
+          />
           <Navbar />
           <Routes>
             {/* Home Page */}
@@ -68,10 +73,12 @@ export default function App() {
               element={
                 <>
                   <div className="relative w-full flex flex-col items-center justify-center pt-10 min-h-[55vh] sm:pt-14 lg:pt-16">
-                    <h4
-                      className="absolute left-[15%] top-[18%] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light transform -translate-x-1/2 text-gray-800 dark:text-gray-200"
-                    >
-                      <motion.span variants={animateOnLoad} initial="hidden" animate="show">
+                    <h4 className="absolute left-[15%] top-[18%] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light transform -translate-x-1/2 text-gray-800 dark:text-gray-200">
+                      <motion.span
+                        variants={animateOnLoad}
+                        initial="hidden"
+                        animate="show"
+                      >
                         Your
                       </motion.span>
                     </h4>
@@ -82,26 +89,30 @@ export default function App() {
                         lineHeight: "1.3",
                         textShadow: "5px 4px 6px rgba(0, 0, 0, 0.3)", // Keep the text shadow for consistency
                         transform: "scaleY(1.4)", // Make the text taller (adjust the value as needed)
-                        transformOrigin: "center"
+                        transformOrigin: "center",
                       }}
                     >
-                      {["F", "R", "O", "N", "T", "-", "E", "N", "D"].map((letter, index) => (
-                        <motion.span
-                          key={index}
-                          className="inline-block"
-                          variants={animateWobbleAndHover}
-                          initial="hidden"
-                          animate="show"
-                          whileHover="hover"
-                        >
-                          {letter}
-                        </motion.span>
-                      ))}
+                      {["F", "R", "O", "N", "T", "-", "E", "N", "D"].map(
+                        (letter, index) => (
+                          <motion.span
+                            key={index}
+                            className="inline-block"
+                            variants={animateWobbleAndHover}
+                            initial="hidden"
+                            animate="show"
+                            whileHover="hover"
+                          >
+                            {letter}
+                          </motion.span>
+                        ),
+                      )}
                     </h1>
-                    <h4
-                      className="absolute right-[15%] bottom-[5%] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light transform translate-x-1/2 text-gray-800 dark:text-gray-200"
-                    >
-                      <motion.span variants={animateOnLoad} initial="hidden" animate="show">
+                    <h4 className="absolute right-[15%] bottom-[5%] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light transform translate-x-1/2 text-gray-800 dark:text-gray-200">
+                      <motion.span
+                        variants={animateOnLoad}
+                        initial="hidden"
+                        animate="show"
+                      >
                         Dev
                       </motion.span>
                     </h4>

@@ -7,8 +7,14 @@
     "preinstall": "npx only-allow yarn",
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "preview": "vite preview",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "format": "prettier --ignore-path .prettierignore --write .",
+    "check-types": "tsc --pretty --noEmit",
+    "check-format": "prettier --ignore-path .prettierignore --check .",
+    "check-lint": "eslint .",
+    "check-all": "yarn format && yarn check-format && yarn check-lint && yarn check-types",
+    "prepare": "husky"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -36,7 +42,9 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.11.0",
+    "husky": "^9.1.7",
     "postcss": "^8.4.49",
+    "prettier": "^3.8.1",
     "tailwindcss": "^3.4.15",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.11.0",

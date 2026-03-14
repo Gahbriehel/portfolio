@@ -24,7 +24,7 @@ const About = () => {
             start: "top 80%", // Trigger when the element is 80% in view
             toggleActions: "play none none reverse", // Reverse on scroll back
           },
-        }
+        },
       );
     }
 
@@ -45,7 +45,7 @@ const About = () => {
               start: "top 90%",
               toggleActions: "play none none reverse",
             },
-          }
+          },
         );
       }
     });
@@ -70,11 +70,7 @@ const About = () => {
           ref={profileRef}
           className="flex justify-center items-center bg-slate-300 dark:bg-slate-700 rounded-full w-72 h-72 overflow-hidden"
         >
-          <img
-            src="/IMG_0606.jpg"
-            alt="Profile"
-            className="w-full h-full"
-          />
+          <img src="/IMG_0606.jpg" alt="Profile" className="w-full h-full" />
         </div>
       </div>
 
@@ -122,8 +118,8 @@ const About = () => {
           >
             optimizing rendering performance
           </motion.span>{" "}
-          to designing modular component systems, I ensure technical excellence at
-          every layer of the stack.
+          to designing modular component systems, I ensure technical excellence
+          at every layer of the stack.
         </p>
 
         <p
@@ -140,7 +136,6 @@ const About = () => {
           </motion.span>{" "}
         </p>
       </section>
-
     </div>
   );
 };

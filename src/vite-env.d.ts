@@ -1,3 +1,3 @@
 /// <reference types="vite/client" />
 
-declare module 'react-christmas-effects';
+declare module "react-christmas-effects";
