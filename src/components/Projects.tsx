@@ -17,6 +17,18 @@ const projects = [
     projectUrl: "https://pos.oneflaretech.com",
   },
   {
+    title: "Comprehensive Retail Management System for Oil & Gas",
+    description:
+      "Comprehensive retail management system featuring performance analytics, expense tracking, and workflow coordination. Streamline operations via a centralized dashboard with smart reporting, role-based access, and secure document management for invoices and receipts.",
+    tools: ["React", "TypeScript", "TailwindCSS", "Jest", "Radix", "MUI"],
+    images: [
+      "/images/bizsuit01.png",
+      "/images/bizsuit02.png",
+      "/images/bizsuit03.png",
+    ],
+    projectUrl: "https://bizsuiteone.vercel.app",
+  },
+  {
     title: "Bellgold consulting Website",
     description:
       "A professional consulting agency website with modern design, built for showcasing services with smooth animations.",
@@ -32,14 +44,14 @@ const projects = [
     images: ["/crow.png"],
     projectUrl: "https://crow-7nyj.vercel.app/",
   },
-  {
-    title: "Ecommerce",
-    description:
-      "An intuitive and fast e-commerce platform built with React, focusing on delivering an excellent user shopping experience and seamless navigation.",
-    tools: ["React.js", "Tailwind"],
-    images: ["/onecommerce.png"],
-    projectUrl: "https://ecommerce-test0.vercel.app/",
-  },
+  // {
+  //   title: "Ecommerce",
+  //   description:
+  //     "An intuitive and fast e-commerce platform built with React, focusing on delivering an excellent user shopping experience and seamless navigation.",
+  //   tools: ["React.js", "Tailwind"],
+  //   images: ["/onecommerce.png"],
+  //   projectUrl: "https://ecommerce-test0.vercel.app/",
+  // },
 ];
 
 gsap.registerPlugin(ScrollTrigger);
