@@ -63,9 +63,9 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => {
   return (
     <div className={`project-card-${index} bg-white dark:bg-[#121212] border border-green-700 dark:border-green-800 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col h-full group/card`}>
       {/* Image Carousel */}
-      <div className="relative w-full aspect-[4/3] md:aspect-video bg-gray-100 dark:bg-gray-900 overflow-hidden group mb-4 border-b border-green-700 dark:border-gray-800">
+      <div className="relative w-full aspect-video bg-gray-100 dark:bg-gray-900 overflow-hidden group mb-4 border-b border-green-700 dark:border-gray-800">
         <a href={project.projectUrl} target="_blank" rel="noopener noreferrer" className="absolute inset-0 block z-0">
-          <div 
+          <div
             className="flex h-full w-full transition-transform duration-500 ease-out"
             style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
           >
@@ -85,7 +85,7 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => {
             </span>
           </div>
         </a>
-        
+
         {project.images.length > 1 && (
           <div className="z-20 relative h-full pointer-events-none">
             <button
@@ -122,22 +122,22 @@ const ProjectCard = ({ project, index }: { project: any; index: number }) => {
       </div>
 
       {/* Content Layer */}
-      <div className="p-6 md:p-8 flex flex-col flex-grow">
+      <div className="p-5 flex flex-col flex-grow">
         <a href={project.projectUrl} target="_blank" rel="noopener noreferrer" className="inline-block group-hover/card:text-green-500 transition-colors duration-300">
-          <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4 font-signika decoration-2 decoration-green-500 underline-offset-4 group-hover/card:underline">
+          <h3 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-2 md:mb-3 font-signika decoration-2 decoration-green-500 underline-offset-4 group-hover/card:underline">
             {project.title}
           </h3>
         </a>
-        <p className="text-gray-600 dark:text-gray-400 mb-8 flex-grow leading-relaxed text-sm md:text-base">
+        <p className="text-gray-600 dark:text-gray-400 mb-5 flex-grow leading-relaxed text-sm md:text-base">
           {project.description}
         </p>
-        
+
         {/* Tools */}
-        <div className="flex flex-wrap gap-2 md:gap-3 mt-auto pt-6 border-t border-gray-100 dark:border-gray-800/60">
+        <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-gray-100 dark:border-gray-800/60">
           {project.tools.map((tool: string, idx: number) => (
             <span
               key={idx}
-              className="text-[11px] md:text-xs font-semibold text-green-700 dark:text-green-400 bg-green-100 dark:bg-green-400/10 px-3 py-1.5 rounded-full dark:border dark:border-green-400/20"
+              className="text-[10px] md:text-xs font-semibold text-green-700 dark:text-green-400 bg-green-100 dark:bg-green-400/10 px-2.5 py-1 md:px-3 md:py-1.5 rounded-full dark:border dark:border-green-400/20"
             >
               {tool}
             </span>
@@ -152,7 +152,7 @@ const Projects = () => {
   useEffect(() => {
     // Reset any previous ScrollTriggers for these classes if component remounts
     ScrollTrigger.getAll().forEach(t => t.kill());
-    
+
     projects.forEach((_, index) => {
       gsap.fromTo(
         `.project-card-${index}`,
@@ -190,7 +190,7 @@ const Projects = () => {
             <div className="absolute -bottom-2 left-0 right-0 h-1 bg-green-500 rounded-full opacity-80"></div>
           </div>
         </div>
-        
+
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 w-full">
           {projects.map((project, index) => (
