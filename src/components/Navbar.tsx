@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { scroller } from "react-scroll";
-import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { BsMoon } from "react-icons/bs";
 import { MdOutlineMail } from "react-icons/md";
 import { FaCode, FaGitAlt, FaLaptopCode } from "react-icons/fa6";
@@ -13,8 +14,8 @@ const Navbar = () => {
   const [theme, setTheme] = useState("light");
   const [debugKey, setDebugKey] = useState(0);
 
-  const location = useLocation();
-  const navigate = useNavigate();
+  const pathname = usePathname();
+  const router = useRouter();
 
   // Initialize theme from localStorage or system preference
   useEffect(() => {
@@ -52,8 +53,8 @@ const Navbar = () => {
 
   // 🧠 Scroll helper — ensures scroll works even after navigation
   const handleScrollNav = (section: string): void => {
-    if (location.pathname !== "/") {
-      navigate("/"); // Go to homepage first
+    if (pathname !== "/") {
+      router.push("/"); // Go to homepage first
       // Wait a tick for React to render home sections
       setTimeout(() => {
         scroller.scrollTo(section, {
@@ -91,7 +92,7 @@ const Navbar = () => {
           {/* <span role="img" aria-label="Christmas hat" className="mr-2">
             🎅🏾
           </span> */}
-          <RouterLink to="/" className="flex items-center gap-1">
+          <Link href="/" className="flex items-center gap-1">
             gahbriehel.
             <motion.span
               className={`transition-all duration-10 ${currentFont}`}
@@ -106,7 +107,7 @@ const Navbar = () => {
             >
               io
             </motion.span>
-          </RouterLink>
+          </Link>
         </h1>
 
         {/* Hamburger */}
@@ -188,19 +189,19 @@ const Navbar = () => {
           ].map(({ name, link, type }) => (
             <li key={link} className="relative group">
               {type === "router" ? (
-                <RouterLink
-                  to={link}
+                <Link
+                  href={link}
                   className="hover:text-[#083050] dark:hover:text-gray-500 text-lg relative transition-colors"
                 >
                   <span>{name}</span>
                   <span
                     className={`absolute bottom-0 left-0 h-0.5 bg-current transition-all duration-300 ease-in-out ${
-                      location.pathname === link
+                      pathname === link
                         ? "w-full bg-blue-100"
                         : "w-0 group-hover:w-full"
                     }`}
                   ></span>
-                </RouterLink>
+                </Link>
               ) : (
                 <button
                   onClick={() => handleScrollNav(link)}
@@ -288,14 +289,14 @@ const Navbar = () => {
             ].map(({ name, link, type }) => (
               <li key={link} className="py-4 gap-3 relative group">
                 {type === "router" ? (
-                  <RouterLink
-                    to={link}
+                  <Link
+                    href={link}
                     className="text-2xl font-light tracking-wider relative transition-colors dark:text-gray-300"
                     onClick={() => setIsOpen(false)}
                   >
                     {name}
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current transition-all duration-300 ease-in-out group-hover:w-full"></span>
-                  </RouterLink>
+                  </Link>
                 ) : (
                   <button
                     onClick={() => handleScrollNav(link)}

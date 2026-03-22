@@ -10,45 +10,49 @@ const About = () => {
   const textRefs = useRef<HTMLParagraphElement[]>([]);
 
   useEffect(() => {
-    if (profileRef.current) {
-      gsap.fromTo(
-        profileRef.current,
-        { x: -200, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: profileRef.current,
-            start: "top 80%", // Trigger when the element is 80% in view
-            toggleActions: "play none none reverse", // Reverse on scroll back
-          },
-        },
-      );
-    }
-
-    // Animate text paragraphs
-    textRefs.current.forEach((text, index) => {
-      if (text) {
+    const ctx = gsap.context(() => {
+      if (profileRef.current) {
         gsap.fromTo(
-          text,
-          { y: 100, opacity: 0 },
+          profileRef.current,
+          { x: -200, opacity: 0 },
           {
-            y: 0,
+            x: 0,
             opacity: 1,
-            duration: 1,
-            delay: index * 0.2, // Stagger animation
+            duration: 1.2,
             ease: "power3.out",
             scrollTrigger: {
-              trigger: text,
-              start: "top 90%",
-              toggleActions: "play none none reverse",
+              trigger: profileRef.current,
+              start: "top 80%", // Trigger when the element is 80% in view
+              toggleActions: "play none none reverse", // Reverse on scroll back
             },
           },
         );
       }
+
+      // Animate text paragraphs
+      textRefs.current.forEach((text, index) => {
+        if (text) {
+          gsap.fromTo(
+            text,
+            { y: 100, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 1,
+              delay: index * 0.2, // Stagger animation
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: text,
+                start: "top 90%",
+                toggleActions: "play none none reverse",
+              },
+            },
+          );
+        }
+      });
     });
+
+    return () => ctx.revert();
   }, []);
 
   const hoverEffect = {
@@ -65,19 +69,21 @@ const About = () => {
       className={`transition-colors duration-500 bg-gradient-to-br from-gray-300 to-gray-100 dark:from-gray-900 dark:to-gray-800 min-h-screen p-6`}
     >
       {/* Profile Picture */}
-      <div className="relative-content flex justify-center items-center">
+      {/* <div className="relative-content flex justify-center items-center">
         <div
           ref={profileRef}
           className="flex justify-center items-center bg-slate-300 dark:bg-slate-700 rounded-full w-72 h-72 overflow-hidden"
         >
-          <img src="/IMG_0606.jpg" alt="Profile" className="w-full h-full" />
+          <Image src="/IMG_0606.jpg" alt="Profile" width={288} height={288} className="w-full h-full object-cover" priority />
         </div>
-      </div>
+      </div> */}
 
       {/* Text Content */}
       <section className="relative-content py-10 px-4 max-w-full text-center mx-auto text-gray-800 dark:text-gray-200">
         <p
-          ref={(el) => textRefs.current.push(el!)}
+          ref={(el) => {
+            if (el && !textRefs.current.includes(el)) textRefs.current.push(el);
+          }}
           className="text-2xl md:text-2xl leading-relaxed mx-auto max-w-3xl"
         >
           I engineer{" "}
@@ -99,7 +105,9 @@ const About = () => {
           that prioritize performance, maintainability, and type safety.
         </p>
         <p
-          ref={(el) => textRefs.current.push(el!)}
+          ref={(el) => {
+            if (el && !textRefs.current.includes(el)) textRefs.current.push(el);
+          }}
           className="text-2xl md:text-2xl leading-relaxed mt-8 mx-auto max-w-3xl"
         >
           I go beyond simple implementation to{" "}
@@ -123,7 +131,9 @@ const About = () => {
         </p>
 
         <p
-          ref={(el) => textRefs.current.push(el!)}
+          ref={(el) => {
+            if (el && !textRefs.current.includes(el)) textRefs.current.push(el);
+          }}
           className="text-2xl md:text-2xl leading-relaxed mt-8 mx-auto max-w-3xl"
         >
           Let’s build software that determines the{" "}

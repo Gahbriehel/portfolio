@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import gsap from "gsap";
+import Image from "next/image";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaArrowRight, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
@@ -111,10 +112,12 @@ const ProjectCard = ({
             style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
           >
             {project.images.map((img: string, i: number) => (
-              <img
+              <Image
                 key={i}
                 src={img}
                 alt={`${project.title} - Image ${i + 1}`}
+                width={800}
+                height={450}
                 className="w-full h-full object-cover flex-shrink-0"
               />
             ))}
@@ -196,31 +199,32 @@ const ProjectCard = ({
 
 const Projects = () => {
   useEffect(() => {
-    // Reset any previous ScrollTriggers for these classes if component remounts
-    ScrollTrigger.getAll().forEach((t) => t.kill());
-
-    projects.forEach((_, index) => {
-      gsap.fromTo(
-        `.project-card-${index}`,
-        {
-          opacity: 0,
-          y: 50,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scrollTrigger: {
-            trigger: `.project-card-${index}`,
-            start: "top 90%", // Trigger animation when top of card is 90% in viewport
-            end: "bottom 20%",
-            scrub: true,
-            once: true,
+    const ctx = gsap.context(() => {
+      projects.forEach((_, index) => {
+        gsap.fromTo(
+          `.project-card-${index}`,
+          {
+            opacity: 0,
+            y: 50,
           },
-          duration: 0.8,
-          ease: "power3.out",
-        },
-      );
+          {
+            opacity: 1,
+            y: 0,
+            scrollTrigger: {
+              trigger: `.project-card-${index}`,
+              start: "top 90%", // Trigger animation when top of card is 90% in viewport
+              end: "bottom 20%",
+              scrub: true,
+              once: true,
+            },
+            duration: 0.8,
+            ease: "power3.out",
+          },
+        );
+      });
     });
+
+    return () => ctx.revert();
   }, []);
 
   return (
