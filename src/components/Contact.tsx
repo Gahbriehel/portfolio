@@ -2,28 +2,48 @@ import { motion } from "framer-motion";
 import { FaLinkedin, FaGithub, FaTwitter, FaEnvelope } from "react-icons/fa";
 import { useState } from "react";
 import Toast from "./UI/Toast";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 
 const ContactPage = () => {
-  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error'; isVisible: boolean }>({
-    message: '',
-    type: 'success',
-    isVisible: false
+  const [toast, setToast] = useState<{
+    message: string;
+    type: "success" | "error";
+    isVisible: boolean;
+  }>({
+    message: "",
+    type: "success",
+    isVisible: false,
   });
 
   const icons = [
-    { icon: <FaLinkedin />, link: "https://linkedin.com/in/gahbriehel", color: "#0077B5" },
-    { icon: <FaGithub />, link: "https://github.com/Gahbriehel", color: "#171515" },
-    { icon: <FaTwitter />, link: "https://twitter.com/Gahbriehel1", color: "#1DA1F2" },
-    { icon: <FaEnvelope />, link: "mailto:babatise002@gmail.com", color: "#D44638" },
+    {
+      icon: <FaLinkedin />,
+      link: "https://linkedin.com/in/gahbriehel",
+      color: "#0077B5",
+    },
+    {
+      icon: <FaGithub />,
+      link: "https://github.com/Gahbriehel",
+      color: "#171515",
+    },
+    {
+      icon: <FaTwitter />,
+      link: "https://twitter.com/Gahbriehel1",
+      color: "#1DA1F2",
+    },
+    {
+      icon: <FaEnvelope />,
+      link: "mailto:babatise002@gmail.com",
+      color: "#D44638",
+    },
   ];
 
-  const showToast = (message: string, type: 'success' | 'error') => {
+  const showToast = (message: string, type: "success" | "error") => {
     setToast({ message, type, isVisible: true });
   };
 
   const closeToast = () => {
-    setToast(prev => ({ ...prev, isVisible: false }));
+    setToast((prev) => ({ ...prev, isVisible: false }));
   };
 
   return (
@@ -52,9 +72,10 @@ const ContactPage = () => {
             viewport={{ once: true }}
           >
             <p className="text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-300">
-              I'm always excited to work on new projects and collaborate with amazing people.
-              Whether you have a project in mind, need technical consultation, or just want to say hello,
-              I'd love to hear from you!
+              I'm always excited to work on new projects and collaborate with
+              amazing people. Whether you have a project in mind, need technical
+              consultation, or just want to say hello, I'd love to hear from
+              you!
             </p>
           </motion.div>
 
@@ -66,41 +87,61 @@ const ContactPage = () => {
             viewport={{ once: true }}
             className="w-full lg:w-2/3 bg-white/30 dark:bg-black/20 backdrop-blur-md p-8 md:p-10 rounded-2xl shadow-xl border border-gray-200/20 mb-16"
           >
-            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">Send a Message</h2>
-            <form onSubmit={(e) => {
-              e.preventDefault();
-              const form = e.currentTarget;
-              const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-              const originalText = btn.innerText;
+            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
+              Send a Message
+            </h2>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const form = e.currentTarget;
+                const btn = form.querySelector(
+                  'button[type="submit"]',
+                ) as HTMLButtonElement;
+                const originalText = btn.innerText;
 
-              btn.innerText = 'Sending...';
-              btn.disabled = true;
+                btn.innerText = "Sending...";
+                btn.disabled = true;
 
-              emailjs.init({
-                publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-              });
-
-              emailjs.sendForm(
-                import.meta.env.VITE_EMAILJS_SERVICE_ID || '',
-                import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '',
-                form
-              )
-                .then(() => {
-                  showToast('Message sent successfully!', 'success');
-                  form.reset();
-                }, (error) => {
-                  console.error('FAILED...', error);
-                  showToast('Failed to send message.', 'error');
-                })
-                .finally(() => {
-                  btn.innerText = originalText;
-                  btn.disabled = false;
+                emailjs.init({
+                  publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
                 });
-            }} className="flex flex-col gap-8">
-              <input type="hidden" name="time" value={new Date().toLocaleString()} />
+
+                emailjs
+                  .sendForm(
+                    process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
+                    process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
+                    form,
+                  )
+                  .then(
+                    () => {
+                      showToast("Message sent successfully!", "success");
+                      form.reset();
+                    },
+                    (error) => {
+                      console.error("FAILED...", error);
+                      showToast("Failed to send message.", "error");
+                    },
+                  )
+                  .finally(() => {
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                  });
+              }}
+              className="flex flex-col gap-8"
+            >
+              <input
+                type="hidden"
+                name="time"
+                value={new Date().toLocaleString()}
+              />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2 pl-1">Name</label>
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium mb-2 pl-1"
+                  >
+                    Name
+                  </label>
                   <input
                     type="text"
                     id="name"
@@ -111,7 +152,12 @@ const ContactPage = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2 pl-1">Email Address</label>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium mb-2 pl-1"
+                  >
+                    Email Address
+                  </label>
                   <input
                     type="email"
                     id="email"
@@ -124,7 +170,12 @@ const ContactPage = () => {
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium mb-2 pl-1">Subject</label>
+                <label
+                  htmlFor="subject"
+                  className="block text-sm font-medium mb-2 pl-1"
+                >
+                  Subject
+                </label>
                 <input
                   type="text"
                   id="subject"
@@ -136,7 +187,12 @@ const ContactPage = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2 pl-1">Message</label>
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium mb-2 pl-1"
+                >
+                  Message
+                </label>
                 <textarea
                   id="message"
                   name="message"
@@ -164,7 +220,9 @@ const ContactPage = () => {
             transition={{ delay: 0.2, duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-semibold opacity-80 uppercase tracking-widest">Reach Me</h3>
+            <h3 className="text-2xl font-semibold opacity-80 uppercase tracking-widest">
+              Reach Me
+            </h3>
             <div className="flex gap-8 md:gap-12">
               {icons.map((item, index) => (
                 <motion.div

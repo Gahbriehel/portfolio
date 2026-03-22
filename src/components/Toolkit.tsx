@@ -1,9 +1,26 @@
-import { FaReact, FaSass, FaGitAlt, FaHtml5, FaCss3Alt, FaJs, FaWrench, FaCode } from "react-icons/fa";
-import { SiTypescript, SiTailwindcss, SiNextdotjs, SiRedux, SiMui, SiPostman, SiVite, SiVercel, SiFramer } from "react-icons/si";
+import {
+  FaReact,
+  FaSass,
+  FaGitAlt,
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaWrench,
+  FaCode,
+} from "react-icons/fa";
+import {
+  SiTypescript,
+  SiTailwindcss,
+  SiNextdotjs,
+  SiRedux,
+  SiMui,
+  SiPostman,
+  SiVite,
+  SiVercel,
+  SiFramer,
+} from "react-icons/si";
 import { IoLogoFirebase } from "react-icons/io5";
 import { RiStackLine } from "react-icons/ri";
-
-
 
 const ToolkitPage = () => {
   const coreSkills = [
@@ -16,7 +33,11 @@ const ToolkitPage = () => {
 
   const frameworks = [
     { name: "React", icon: FaReact, color: "text-cyan-400" },
-    { name: "Next.js", icon: SiNextdotjs, color: "text-gray-900 dark:text-white" },
+    {
+      name: "Next.js",
+      icon: SiNextdotjs,
+      color: "text-gray-900 dark:text-white",
+    },
     { name: "Framer motion", icon: SiFramer, color: "text-blue-400" },
     { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-cyan-500" },
     { name: "Material UI", icon: SiMui, color: "text-blue-600" },
@@ -39,7 +60,7 @@ const ToolkitPage = () => {
       description: "Building blocks of modern web development",
       items: coreSkills,
       headerClass: "bg-gradient-to-r from-blue-500 to-purple-600",
-      shadowColor: "shadow-blue-500/40 hover:shadow-purple-600/30"
+      shadowColor: "shadow-blue-500/40 hover:shadow-purple-600/30",
     },
     {
       id: 2,
@@ -48,7 +69,7 @@ const ToolkitPage = () => {
       description: "Powerful tools for efficient development",
       items: frameworks,
       headerClass: "bg-gradient-to-r from-emerald-500 to-teal-600",
-      shadowColor: "shadow-emerald-500/40 hover:shadow-teal-600/30"
+      shadowColor: "shadow-emerald-500/40 hover:shadow-teal-600/30",
     },
     {
       id: 3,
@@ -57,7 +78,7 @@ const ToolkitPage = () => {
       description: "Infrastructure and deployment solutions",
       items: tools,
       headerClass: "bg-gradient-to-r from-orange-500 to-rose-600",
-      shadowColor: "shadow-orange-500/40 hover:shadow-rose-600/30"
+      shadowColor: "shadow-orange-500/40 hover:shadow-rose-600/30",
     },
   ];
 
@@ -78,8 +99,12 @@ const ToolkitPage = () => {
               className={`bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ${card.shadowColor}`}
             >
               {/* Card Header */}
-              <div className={`p-6 text-white shadow-lg rounded-t-2xl	 ${card.headerClass} flex items-center gap-4`}>
-                <div><card.icon className="text-5xl"/></div>
+              <div
+                className={`p-6 text-white shadow-lg rounded-t-2xl	 ${card.headerClass} flex items-center gap-4`}
+              >
+                <div>
+                  <card.icon className="text-5xl" />
+                </div>
                 <div>
                   <h2 className="text-2xl font-bold mb-2">{card.title}</h2>
                   <p className="text-sm opacity-90">{card.description}</p>

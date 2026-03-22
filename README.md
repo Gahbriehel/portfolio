@@ -27,6 +27,7 @@ This is a personal portfolio website built with React, TypeScript, and Vite.
 This project uses EmailJS for the contact form functionality. To make it work:
 
 1. Copy the example environment file:
+
    ```bash
    cp .env.example .env
    ```
