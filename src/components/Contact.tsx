@@ -3,8 +3,12 @@ import { FaLinkedin, FaGithub, FaTwitter, FaEnvelope } from "react-icons/fa";
 import { useState } from "react";
 import Toast from "./UI/Toast";
 import emailjs from "@emailjs/browser";
+import { useEffect } from "react";
 
 const ContactPage = () => {
+  useEffect(() => {
+    emailjs.init({ publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY });
+  }, []);
   const [toast, setToast] = useState<{
     message: string;
     type: "success" | "error";
@@ -102,9 +106,7 @@ const ContactPage = () => {
                 btn.innerText = "Sending...";
                 btn.disabled = true;
 
-                emailjs.init({
-                  publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
-                });
+                console.log("KEY:", process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
 
                 emailjs
                   .sendForm(
