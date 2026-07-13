@@ -3,10 +3,32 @@ import gsap from "gsap";
 import Image from "next/image";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaArrowRight, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const projects = [
   {
-    title: "Sales, Inventory, production Management Application",
+    title: "Nudger",
+    description:
+      "A production-grade productivity web app that goes beyond basic to-do lists by emphasizing behavioral nudges and cognitive support. It features a powerful recurrence engine, subtask tracking, and unique 'cognitive memory cues' designed to reduce the friction of starting real-world tasks. To keep users focused and on track, it utilizes proactive push notifications and an 'Urgent Nudges' dashboard widget that deep-links directly to high-priority items.",
+    tools: [
+      "NextJs",
+      "TypeScript",
+      "TailwindCSS",
+      "Supabase",
+      "Web Push",
+      "Cron Job",
+    ],
+    images: [
+      "/images/nudger1.png",
+      "/images/nudger2.png",
+      "/images/nudger3.png",
+      "/images/nudger4.png",
+    ],
+    projectUrl: "https://nudger.gdome.xyz",
+    featured: true,
+  },
+  {
+    title: "OneflarePOS",
     description:
       "A comprehensive retail management system enabling seamless inventory tracking, sales analytics, supplier management, production management, target setting, and real-time reporting across multiple branches.",
     tools: ["NextJs", "TypeScript", "TailwindCSS", "Redux", "Tanstack"],
@@ -16,9 +38,10 @@ const projects = [
       "/images/oneflare03.png",
     ],
     projectUrl: "https://pos.oneflaretech.com",
+    featured: true,
   },
   {
-    title: "Comprehensive Retail Management System for Oil & Gas",
+    title: "Bizsuite - Retail Management System",
     description:
       "Comprehensive retail management system featuring performance analytics, expense tracking, and workflow coordination. Streamline operations via a centralized dashboard with smart reporting, role-based access, and secure document management for invoices and receipts.",
     tools: ["React", "TypeScript", "TailwindCSS", "Jest", "Radix", "MUI"],
@@ -28,6 +51,7 @@ const projects = [
       "/images/bizsuit03.png",
     ],
     projectUrl: "https://bizsuiteone.vercel.app",
+    featured: true,
   },
   {
     title: "Bellgold consulting Website",
@@ -36,6 +60,7 @@ const projects = [
     tools: ["HTML", "Tailwind", "Vanilla Js", "Vercel"],
     images: ["/bellgold.png"],
     projectUrl: "https://bellgold-gn1o.vercel.app/",
+    featured: true,
   },
   {
     title: "SKU Generator Microservice",
@@ -44,6 +69,7 @@ const projects = [
     tools: ["Next.js", "TypeScript", "Tailwind", "Vercel"],
     images: ["/crow.png"],
     projectUrl: "https://crow-7nyj.vercel.app/",
+    featured: false,
   },
   // {
   //   title: "Ecommerce",
@@ -67,6 +93,7 @@ const ProjectCard = ({
     tools: string[];
     images: string[];
     projectUrl: string;
+    featured?: boolean;
   };
   index: number;
 }) => {
@@ -198,11 +225,23 @@ const ProjectCard = ({
 };
 
 const Projects = () => {
+  const [activeTab, setActiveTab] = useState<"featured" | "all">("featured");
+
   useEffect(() => {
+    // Refresh ScrollTrigger to recalculate layout changes
+    ScrollTrigger.refresh();
+
     const ctx = gsap.context(() => {
-      projects.forEach((_, index) => {
+      const activeProjects =
+        activeTab === "featured"
+          ? projects.filter((p) => p.featured)
+          : projects;
+      activeProjects.forEach((project) => {
+        const originalIndex = projects.findIndex(
+          (p) => p.title === project.title,
+        );
         gsap.fromTo(
-          `.project-card-${index}`,
+          `.project-card-${originalIndex}`,
           {
             opacity: 0,
             y: 50,
@@ -211,7 +250,7 @@ const Projects = () => {
             opacity: 1,
             y: 0,
             scrollTrigger: {
-              trigger: `.project-card-${index}`,
+              trigger: `.project-card-${originalIndex}`,
               start: "top 90%", // Trigger animation when top of card is 90% in viewport
               end: "bottom 20%",
               scrub: true,
@@ -225,7 +264,10 @@ const Projects = () => {
     });
 
     return () => ctx.revert();
-  }, []);
+  }, [activeTab]);
+
+  const displayedProjects =
+    activeTab === "featured" ? projects.filter((p) => p.featured) : projects;
 
   return (
     <section
@@ -244,11 +286,60 @@ const Projects = () => {
           </div>
         </div>
 
+        {/* Tabs Control */}
+        <div className="flex justify-center mb-12">
+          <div className="relative flex p-1 bg-gray-200/60 dark:bg-gray-800/60 backdrop-blur-md rounded-full border border-gray-300/30 dark:border-gray-700/30">
+            <button
+              onClick={() => setActiveTab("featured")}
+              className={`relative px-6 py-2 text-sm md:text-base font-medium rounded-full transition-colors duration-300 z-10 focus:outline-none ${
+                activeTab === "featured"
+                  ? "text-white dark:text-gray-900"
+                  : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
+              }`}
+            >
+              Featured
+              {activeTab === "featured" && (
+                <motion.div
+                  layoutId="active-tab"
+                  className="absolute inset-0 bg-green-600 dark:bg-green-400 rounded-full -z-10"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
+            </button>
+            <button
+              onClick={() => setActiveTab("all")}
+              className={`relative px-6 py-2 text-sm md:text-base font-medium rounded-full transition-colors duration-300 z-10 focus:outline-none ${
+                activeTab === "all"
+                  ? "text-white dark:text-gray-900"
+                  : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
+              }`}
+            >
+              All Projects
+              {activeTab === "all" && (
+                <motion.div
+                  layoutId="active-tab"
+                  className="absolute inset-0 bg-green-600 dark:bg-green-400 rounded-full -z-10"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
+            </button>
+          </div>
+        </div>
+
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 w-full">
-          {projects.map((project, index) => (
-            <ProjectCard key={index} project={project} index={index} />
-          ))}
+          {displayedProjects.map((project) => {
+            const originalIndex = projects.findIndex(
+              (p) => p.title === project.title,
+            );
+            return (
+              <ProjectCard
+                key={originalIndex}
+                project={project}
+                index={originalIndex}
+              />
+            );
+          })}
         </div>
       </div>
     </section>
