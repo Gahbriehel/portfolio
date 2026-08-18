@@ -27,18 +27,23 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        serif: ["Playfair Display", "Georgia", "serif"],
+        sans: ["Plus Jakarta Sans", "Inter", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
         cursive: ["Pacifico", "cursive"],
-        bold: ["Roboto", "sans-serif"],
-        signika: ["Signika", "sans-serif"],
-        roboto: ["Roboto", "sans-serif"],
+        signika: ["Plus Jakarta Sans", "sans-serif"],
+        roboto: ["Plus Jakarta Sans", "sans-serif"],
         inter: ["Inter", "sans-serif"],
-        poppins: ["Poppins", "sans-serif"],
-        lora: ["Lora", "serif"],
-        montserrat: ["Montserrat", "sans-serif"],
-        openSans: ["Open Sans", "sans-serif"],
-        nexafont: ["Nexa", "sans-serif"],
+        poppins: ["Plus Jakarta Sans", "sans-serif"],
+        lora: ["Playfair Display", "serif"],
         playfairDisplay: ["Playfair Display", "serif"],
-        pachang: ["Pachang", "sans-serif"],
+        panchang: ["Playfair Display", "serif"],
+      },
+      colors: {
+        amber: {
+          500: "#f59e0b",
+          600: "#d97706",
+        },
       },
     },
   },

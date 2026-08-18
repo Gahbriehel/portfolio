@@ -24,119 +24,134 @@ import { RiStackLine } from "react-icons/ri";
 
 const ToolkitPage = () => {
   const coreSkills = [
-    { name: "HTML5", icon: FaHtml5, color: "text-orange-600" },
-    { name: "CSS3", icon: FaCss3Alt, color: "text-blue-500" },
-    { name: "JavaScript", icon: FaJs, color: "text-yellow-400" },
-    { name: "TypeScript", icon: SiTypescript, color: "text-blue-600" },
-    { name: "Scss", icon: FaSass, color: "text-red-600" },
+    { name: "TypeScript", icon: SiTypescript, level: "Advanced / Primary" },
+    { name: "JavaScript (ESNext)", icon: FaJs, level: "Advanced" },
+    { name: "HTML5 / Semantic", icon: FaHtml5, level: "Expert" },
+    { name: "CSS3 / Architecture", icon: FaCss3Alt, level: "Expert" },
+    { name: "SCSS / Sassy CSS", icon: FaSass, level: "Proficient" },
   ];
 
   const frameworks = [
-    { name: "React", icon: FaReact, color: "text-cyan-400" },
+    { name: "React 18 / 19", icon: FaReact, level: "Core Framework" },
     {
-      name: "Next.js",
+      name: "Next.js (App Router)",
       icon: SiNextdotjs,
-      color: "text-gray-900 dark:text-white",
+      level: "Full-Stack Web",
     },
-    { name: "Framer motion", icon: SiFramer, color: "text-blue-400" },
-    { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-cyan-500" },
-    { name: "Material UI", icon: SiMui, color: "text-blue-600" },
+    { name: "Framer Motion", icon: SiFramer, level: "Animations" },
+    { name: "Tailwind CSS", icon: SiTailwindcss, level: "Styling System" },
+    { name: "Material UI", icon: SiMui, level: "UI Library" },
   ];
 
   const tools = [
-    { name: "Git", icon: FaGitAlt, color: "text-orange-400" },
-    { name: "Redux", icon: SiRedux, color: "text-orange-400" },
-    { name: "Vercel", icon: SiVercel, color: "text-gray-900 dark:text-white" },
-    { name: "Firebase", icon: IoLogoFirebase, color: "text-yellow-500" },
-    { name: "Vite", icon: SiVite, color: "text-purple-500" },
-    { name: "Postman", icon: SiPostman, color: "text-orange-600" },
+    { name: "Git & Version Control", icon: FaGitAlt, level: "Workflows" },
+    { name: "Redux Toolkit", icon: SiRedux, level: "State Management" },
+    { name: "Vercel Platform", icon: SiVercel, level: "Deployment & Edge" },
+    {
+      name: "Firebase / Cloud",
+      icon: IoLogoFirebase,
+      level: "Auth & Database",
+    },
+    { name: "Vite Bundler", icon: SiVite, level: "Build Tooling" },
+    { name: "Postman API", icon: SiPostman, level: "API Testing" },
   ];
 
   const cardData = [
     {
-      id: 1,
-      title: "Core",
+      id: "01",
+      title: "Core Languages & Logic",
       icon: FaCode,
-      description: "Building blocks of modern web development",
+      description: "Foundational web standards & type systems",
       items: coreSkills,
-      headerClass: "bg-gradient-to-r from-blue-500 to-purple-600",
-      shadowColor: "shadow-blue-500/40 hover:shadow-purple-600/30",
     },
     {
-      id: 2,
-      title: "Frameworks & Libraries",
+      id: "02",
+      title: "Frameworks & UI Engines",
       icon: RiStackLine,
-      description: "Powerful tools for efficient development",
+      description: "Production-grade UI & application frameworks",
       items: frameworks,
-      headerClass: "bg-gradient-to-r from-emerald-500 to-teal-600",
-      shadowColor: "shadow-emerald-500/40 hover:shadow-teal-600/30",
     },
     {
-      id: 3,
-      title: "Tools & Platforms",
+      id: "03",
+      title: "Tooling & Infrastructure",
       icon: FaWrench,
-      description: "Infrastructure and deployment solutions",
+      description: "CI/CD, state management & cloud platforms",
       items: tools,
-      headerClass: "bg-gradient-to-r from-orange-500 to-rose-600",
-      shadowColor: "shadow-orange-500/40 hover:shadow-rose-600/30",
     },
   ];
 
   return (
-    <div className="relative z-10 dark:bg-gray-900 min-h-screen p-4">
-      <div>
-        <h1 className="relative-content text-4xl font-semibold text-gray-800 dark:text-gray-200 pt-10 ml-6 font-signika">
-          Tech Toolkit
-        </h1>
-      </div>
+    <section className="bg-stone-100/50 dark:bg-[#0B0B0E] py-24 px-6 md:px-12 border-t border-zinc-200 dark:border-zinc-800/80">
+      <div className="max-w-7xl mx-auto w-full">
+        {/* Section Header */}
+        <div className="pb-8 mb-12 border-b border-zinc-200 dark:border-zinc-800/80">
+          <span className="font-mono-meta text-xs text-amber-600 dark:text-amber-400 uppercase tracking-widest font-semibold block mb-2">
+            03 // ENGINEERING MATRIX
+          </span>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+            Technical Stack & Ecosystem
+          </h2>
+        </div>
 
-      {/* Cards Container */}
-      <div className="max-w-7xl mx-auto mt-12 px-4">
+        {/* Matrix Grid Container */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {cardData.map((card) => (
             <div
               key={card.id}
-              className={`bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ${card.shadowColor}`}
+              className="bg-white dark:bg-[#111116] rounded-2xl border border-zinc-200/90 dark:border-zinc-800/90 p-6 md:p-8 hover:border-amber-500/50 transition-colors duration-300 flex flex-col justify-between"
             >
-              {/* Card Header */}
-              <div
-                className={`p-6 text-white shadow-lg rounded-t-2xl	 ${card.headerClass} flex items-center gap-4`}
-              >
-                <div>
-                  <card.icon className="text-5xl" />
+              <div>
+                {/* Category Header */}
+                <div className="flex items-center justify-between pb-6 mb-6 border-b border-zinc-200/80 dark:border-zinc-800/80">
+                  <div>
+                    <span className="font-mono-meta text-xs text-amber-600 dark:text-amber-400 font-semibold block mb-1">
+                      MATRIX // {card.id}
+                    </span>
+                    <h3 className="font-serif text-xl font-bold text-zinc-900 dark:text-zinc-50">
+                      {card.title}
+                    </h3>
+                  </div>
+                  <card.icon className="text-zinc-400 dark:text-zinc-600 text-2xl" />
                 </div>
-                <div>
-                  <h2 className="text-2xl font-bold mb-2">{card.title}</h2>
-                  <p className="text-sm opacity-90">{card.description}</p>
-                </div>
-              </div>
+                <p className="text-xs font-mono-meta text-zinc-500 dark:text-zinc-400 mb-6 uppercase tracking-wider">
+                  {card.description}
+                </p>
 
-              {/* Card Content */}
-              <div className="p-6">
+                {/* Tech Items List */}
                 <div className="space-y-3">
                   {card.items.map((item, index) => {
                     const IconComponent = item.icon;
                     return (
                       <div
                         key={index}
-                        className="flex items-center gap-3 p-3 rounded-lg border border-gray-200 dark:border-gray-700  dark:hover:border-gray-600 hover:scale-105 hover:translate-y-1 transition-all duration-200 bg-gray-50 dark:bg-gray-700/50 shadow hover:shadow-eal-100/40 cursor-pointer"
+                        className="group flex items-center justify-between p-3.5 rounded-xl border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-50/50 dark:bg-zinc-900/40 hover:border-amber-500/40 hover:bg-amber-500/5 transition-all duration-200"
                       >
-                        <div className="text-2xl">
-                          <IconComponent className={item.color} />
+                        <div className="flex items-center gap-3">
+                          <IconComponent className="text-xl text-zinc-700 dark:text-zinc-300 group-hover:text-amber-500 transition-colors" />
+                          <span className="text-sm font-medium text-zinc-800 dark:text-zinc-200 font-sans">
+                            {item.name}
+                          </span>
                         </div>
-                        <span className="text-gray-700 dark:text-gray-300 font-medium">
-                          {item.name}
+                        <span className="text-[10px] font-mono-meta text-zinc-400 dark:text-zinc-500 group-hover:text-amber-600 dark:group-hover:text-amber-400 uppercase tracking-wider">
+                          {item.level}
                         </span>
                       </div>
                     );
                   })}
                 </div>
               </div>
+
+              <div className="mt-8 pt-4 border-t border-zinc-200/60 dark:border-zinc-800/60 flex items-center justify-between font-mono-meta text-[11px] text-zinc-400">
+                <span>STATUS: VERIFIED</span>
+                <span className="text-amber-600 dark:text-amber-400">
+                  100% PRODUCTION READY
+                </span>
+              </div>
             </div>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

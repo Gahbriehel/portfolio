@@ -14,6 +14,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState("light");
   const [debugKey, setDebugKey] = useState(0);
+  console.log(currentFont);
 
   const pathname = usePathname();
   const router = useRouter();
@@ -86,157 +87,142 @@ const Navbar = () => {
   return (
     <nav
       key={debugKey}
-      className="sticky top-0 bg-white/80 dark:bg-gray-900/80 text-gray-800 dark:text-gray-200 shadow-md z-50 p-4 md:px-10 border-b border-gray-200/50 dark:border-gray-800/50"
+      className="sticky top-0 bg-stone-50/80 dark:bg-[#0B0B0E]/80 text-zinc-900 dark:text-zinc-100 backdrop-blur-md z-50 py-4 px-6 md:px-12 border-b border-zinc-200/60 dark:border-zinc-800/60 transition-colors"
     >
-      <div className="container mx-auto flex justify-between items-center">
-        <h1 className="mt-2 text-2xl font flex items-center gap-1">
-          {/* <span role="img" aria-label="Christmas hat" className="mr-2">
-            🎅🏾
-          </span> */}
-          <Link href="/" className="flex items-center gap-1">
-            gahbriehel.
-            <motion.span
-              className={`transition-all duration-10 ${currentFont}`}
-              initial={{ scale: 1 }}
-              animate={{
-                scale: [1, 1.2, 1],
-                transition: {
-                  duration: 0.5,
-                  repeat: Infinity,
-                },
-              }}
-            >
-              io
-            </motion.span>
+      <div className="max-w-7xl mx-auto flex justify-between items-center">
+        {/* Brand Logotype */}
+        <div className="flex items-center gap-4">
+          <Link href="/" className="group flex items-center gap-2">
+            <span className="font-serif text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 group-hover:text-amber-500 transition-colors">
+              GAHBRIEHEL
+            </span>
+            <span className="font-mono-meta text-xs text-amber-600 dark:text-amber-400 font-medium">
+              [IO]
+            </span>
           </Link>
-        </h1>
+
+          {/* Availability Status Badge */}
+          <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 text-xs font-mono-meta">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+            </span>
+            <span>AVAILABLE FOR WORK</span>
+          </div>
+        </div>
 
         {/* Mobile controls */}
-        <div className="flex items-center gap-4 md:hidden">
+        <div className="flex items-center gap-3 md:hidden">
           <button
             onClick={toggleTheme}
-            className="cursor-pointer text-2xl focus:outline-none p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="p-2 rounded-full text-zinc-600 dark:text-zinc-300 hover:bg-zinc-200/60 dark:hover:bg-zinc-800 transition-colors"
             aria-label="Toggle Theme"
           >
             {theme === "light" ? (
-              <BsMoon className="text-xl" />
+              <BsMoon className="text-lg" />
             ) : (
-              <span className="text-xl">☀️</span>
+              <span className="text-lg">☀️</span>
             )}
           </button>
 
           <button
-            className="text-3xl focus:outline-none relative"
+            className="p-2 text-zinc-800 dark:text-zinc-200 focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle Menu"
           >
             <motion.div
-              className="w-5 h-0.5 bg-current mb-1 rounded-full"
+              className="w-6 h-0.5 bg-current mb-1.5"
               animate={{
                 rotate: isOpen ? 45 : 0,
-                y: isOpen ? 6 : 0,
+                y: isOpen ? 8 : 0,
               }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.25 }}
             ></motion.div>
             <motion.div
-              className="w-5 h-0.5 bg-current mb-1 rounded-full"
+              className="w-6 h-0.5 bg-current mb-1.5"
               animate={{ opacity: isOpen ? 0 : 1 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.25 }}
             ></motion.div>
             <motion.div
-              className="w-5 h-0.5 bg-current rounded-full"
+              className="w-6 h-0.5 bg-current"
               animate={{
                 rotate: isOpen ? -45 : 0,
-                y: isOpen ? -6 : 0,
+                y: isOpen ? -8 : 0,
               }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.25 }}
             ></motion.div>
           </button>
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-8">
-          {[
-            {
-              name: (
-                <>
-                  <span className="flex items-center">
-                    <FaLaptopCode className="inline mr-1 text-lg" /> Resume
-                  </span>
-                </>
-              ),
-              link: "/resume",
-              type: "router",
-            },
-            {
-              name: (
-                <>
-                  <span className="flex items-center">
-                    <FaGitAlt className="inline mr-1 text-lg" /> Projects
-                  </span>
-                </>
-              ),
-              link: "projects",
-              type: "scroll",
-            },
-            {
-              name: (
-                <>
-                  <span className="flex items-center">
-                    <FaCode className="inline mr-1 text-lg" /> Toolkit
-                  </span>
-                </>
-              ),
-              link: "toolkit",
-              type: "scroll",
-            },
-            {
-              name: (
-                <>
-                  <span className="flex items-center">
-                    <MdOutlineMail className="inline mr-1 text-lg" />
-                    Contact
-                  </span>
-                </>
-              ),
-              link: "contact",
-              type: "scroll",
-            },
-          ].map(({ name, link, type }) => (
-            <li key={link} className="relative group">
-              {type === "router" ? (
-                <Link
-                  href={link}
-                  className="hover:text-[#083050] dark:hover:text-gray-500 text-lg relative transition-colors"
-                >
-                  <span>{name}</span>
-                  <span
-                    className={`absolute bottom-0 left-0 h-0.5 bg-current transition-all duration-300 ease-in-out ${
-                      pathname === link
-                        ? "w-full bg-blue-100"
-                        : "w-0 group-hover:w-full"
-                    }`}
-                  ></span>
-                </Link>
-              ) : (
-                <button
-                  onClick={() => handleScrollNav(link)}
-                  className="cursor-pointer hover:text-[#083050] dark:hover:text-gray-500 text-lg relative transition-colors"
-                >
-                  <span>{name}</span>
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-current transition-all duration-300 ease-in-out group-hover:w-full"></span>
-                </button>
-              )}
-            </li>
-          ))}
-        </ul>
+        <div className="hidden md:flex items-center gap-8">
+          <ul className="flex gap-8 font-sans text-sm font-medium tracking-wide">
+            {[
+              {
+                name: "RESUME",
+                link: "/resume",
+                type: "router",
+              },
+              {
+                name: "SELECTED WORK",
+                link: "projects",
+                type: "scroll",
+              },
+              {
+                name: "TOOLKIT",
+                link: "toolkit",
+                type: "scroll",
+              },
+              {
+                name: "CONTACT",
+                link: "contact",
+                type: "scroll",
+              },
+            ].map(({ name, link, type }) => (
+              <li key={link} className="relative group">
+                {type === "router" ? (
+                  <Link
+                    href={link}
+                    className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors uppercase font-mono-meta text-xs tracking-wider"
+                  >
+                    <span>{name}</span>
+                    <span
+                      className={`absolute -bottom-1 left-0 h-[2px] bg-amber-500 transition-all duration-300 ${
+                        pathname === link ? "w-full" : "w-0 group-hover:w-full"
+                      }`}
+                    ></span>
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => handleScrollNav(link)}
+                    className="cursor-pointer text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors uppercase font-mono-meta text-xs tracking-wider"
+                  >
+                    <span>{name}</span>
+                    <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
+                  </button>
+                )}
+              </li>
+            ))}
+          </ul>
+
+          <button
+            onClick={toggleTheme}
+            className="p-2.5 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-amber-500 dark:hover:text-amber-400 hover:border-amber-500/40 transition-colors"
+            aria-label="Toggle Theme"
+          >
+            {theme === "light" ? (
+              <BsMoon className="text-base" />
+            ) : (
+              <span className="text-base">☀️</span>
+            )}
+          </button>
+        </div>
 
         {/* Mobile Menu — Side Drawer */}
         {isOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 z-40 bg-black/50 md:hidden"
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-xs md:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -245,72 +231,71 @@ const Navbar = () => {
               aria-hidden="true"
             />
 
-            {/* Drawer Panel */}
             <motion.div
-              className="fixed top-0 right-0 z-50 h-full w-[75%] max-w-xs flex flex-col md:hidden"
-              style={{ background: theme === "dark" ? "#0f172a" : "#ffffff" }}
+              className="fixed top-0 right-0 z-50 h-full w-[80%] max-w-xs flex flex-col md:hidden border-l border-zinc-200 dark:border-zinc-800"
+              style={{ background: theme === "dark" ? "#0B0B0E" : "#FAFAFA" }}
               initial={{ x: "100%" }}
               animate={{ x: "0%" }}
               exit={{ x: "100%" }}
-              transition={{ duration: 0.32, ease: [0.32, 0.72, 0, 1] }}
+              transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
             >
-              {/* Drawer Header */}
-              <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100 dark:border-gray-800">
+              <div className="flex items-center justify-between px-6 py-6 border-b border-zinc-200 dark:border-zinc-800">
                 <Link
                   href="/"
                   onClick={() => setIsOpen(false)}
-                  className="text-lg font-semibold tracking-tight text-gray-800 dark:text-gray-100"
+                  className="font-serif text-lg font-bold text-zinc-900 dark:text-zinc-100"
                 >
-                  gahbriehel<span className="text-green-500">.io</span>
+                  GAHBRIEHEL
+                  <span className="text-amber-500 font-mono-meta text-xs">
+                    .IO
+                  </span>
                 </Link>
                 <button
                   onClick={() => setIsOpen(false)}
                   aria-label="Close menu"
-                  className="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                  className="p-2 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
                 >
                   <IoClose size={22} />
                 </button>
               </div>
 
-              {/* Nav Items */}
-              <nav className="flex-1 flex flex-col justify-center px-6 gap-1">
+              <nav className="flex-1 flex flex-col justify-center px-6 gap-2">
                 {[
                   {
-                    label: "Resume",
+                    label: "RESUME",
                     icon: <FaLaptopCode />,
                     link: "/resume",
                     type: "router",
                   },
                   {
-                    label: "Projects",
+                    label: "SELECTED WORK",
                     icon: <FaGitAlt />,
                     link: "projects",
                     type: "scroll",
                   },
                   {
-                    label: "Toolkit",
+                    label: "TOOLKIT",
                     icon: <FaCode />,
                     link: "toolkit",
                     type: "scroll",
                   },
                   {
-                    label: "Contact",
+                    label: "CONTACT",
                     icon: <MdOutlineMail />,
                     link: "contact",
                     type: "scroll",
                   },
                 ].map(({ label, icon, link, type }, i) => {
                   const itemClass =
-                    "group flex items-center gap-4 w-full px-4 py-4 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-green-50 dark:hover:bg-green-500/10 hover:text-green-600 dark:hover:text-green-400 transition-all duration-200 text-lg font-medium";
+                    "flex items-center gap-4 w-full px-4 py-4 rounded-lg text-zinc-700 dark:text-zinc-300 hover:bg-amber-500/10 hover:text-amber-600 dark:hover:text-amber-400 transition-all font-mono-meta text-sm tracking-wider";
                   return (
                     <motion.div
                       key={link}
-                      initial={{ opacity: 0, x: 24 }}
+                      initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{
-                        delay: 0.06 + i * 0.055,
-                        duration: 0.28,
-                        ease: "easeOut",
+                        delay: 0.05 + i * 0.05,
+                        duration: 0.25,
                       }}
                     >
                       {type === "router" ? (
@@ -319,9 +304,7 @@ const Navbar = () => {
                           className={itemClass}
                           onClick={() => setIsOpen(false)}
                         >
-                          <span className="text-green-500 dark:text-green-400 text-xl flex-shrink-0">
-                            {icon}
-                          </span>
+                          <span className="text-amber-500 text-lg">{icon}</span>
                           {label}
                         </Link>
                       ) : (
@@ -329,9 +312,7 @@ const Navbar = () => {
                           onClick={() => handleScrollNav(link)}
                           className={`cursor-pointer ${itemClass}`}
                         >
-                          <span className="text-green-500 dark:text-green-400 text-xl flex-shrink-0">
-                            {icon}
-                          </span>
+                          <span className="text-amber-500 text-lg">{icon}</span>
                           {label}
                         </button>
                       )}
@@ -340,21 +321,24 @@ const Navbar = () => {
                 })}
               </nav>
 
-              {/* Drawer Footer — Theme toggle */}
-              <div className="px-6 py-5 border-t border-gray-100 dark:border-gray-800">
+              <div className="px-6 py-6 border-t border-zinc-200 dark:border-zinc-800">
+                <div className="flex items-center gap-2 mb-4 px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-mono-meta">
+                  <span className="h-2 w-2 rounded-full bg-amber-500"></span>
+                  <span>AVAILABLE FOR WORK</span>
+                </div>
                 <button
                   onClick={toggleTheme}
-                  className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-sm font-medium"
+                  className="flex items-center gap-3 w-full px-4 py-3 rounded-lg border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors font-mono-meta text-xs"
                 >
                   {theme === "light" ? (
                     <>
-                      <BsMoon className="text-lg" />
-                      <span>Switch to Dark Mode</span>
+                      <BsMoon className="text-base" />
+                      <span>DARK MODE</span>
                     </>
                   ) : (
                     <>
-                      <span className="text-lg">☀️</span>
-                      <span>Switch to Light Mode</span>
+                      <span className="text-base">☀️</span>
+                      <span>LIGHT MODE</span>
                     </>
                   )}
                 </button>
@@ -362,22 +346,6 @@ const Navbar = () => {
             </motion.div>
           </>
         )}
-
-        {/* Desktop Theme Switcher */}
-        <div
-          className="hidden md:block cursor-pointer text-2xl"
-          onClick={toggleTheme}
-        >
-          {theme === "light" ? (
-            <span role="img" aria-label="Switch to dark mode">
-              <BsMoon />
-            </span>
-          ) : (
-            <span role="img" aria-label="Switch to light mode">
-              ☀️
-            </span>
-          )}
-        </div>
       </div>
     </nav>
   );
