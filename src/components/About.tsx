@@ -1,152 +1,126 @@
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
-  const profileRef = useRef<HTMLDivElement>(null);
-  const textRefs = useRef<HTMLParagraphElement[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      if (profileRef.current) {
+      if (containerRef.current) {
         gsap.fromTo(
-          profileRef.current,
-          { x: -200, opacity: 0 },
+          containerRef.current.querySelectorAll(".about-fade"),
+          { y: 40, opacity: 0 },
           {
-            x: 0,
+            y: 0,
             opacity: 1,
-            duration: 1.2,
+            duration: 0.8,
+            stagger: 0.15,
             ease: "power3.out",
             scrollTrigger: {
-              trigger: profileRef.current,
-              start: "top 80%", // Trigger when the element is 80% in view
-              toggleActions: "play none none reverse", // Reverse on scroll back
+              trigger: containerRef.current,
+              start: "top 80%",
             },
           },
         );
       }
-
-      // Animate text paragraphs
-      textRefs.current.forEach((text, index) => {
-        if (text) {
-          gsap.fromTo(
-            text,
-            { y: 100, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 1,
-              delay: index * 0.2, // Stagger animation
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: text,
-                start: "top 90%",
-                toggleActions: "play none none reverse",
-              },
-            },
-          );
-        }
-      });
-    });
+    }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
-  const hoverEffect = {
-    scale: 1.3,
-    transition: { type: "spring", stiffness: 200 },
-  };
-
-  const cursorStyle = {
-    cursor: `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="15" fill="red" /></svg>') 20 20, auto`,
-  };
-
   return (
-    <div
-      className={`transition-colors duration-500 bg-gradient-to-br from-gray-300 to-gray-100 dark:from-gray-900 dark:to-gray-800 min-h-screen p-6`}
+    <section
+      ref={containerRef}
+      className="py-24 px-6 md:px-12 border-t border-zinc-200 dark:border-zinc-800/80 bg-stone-100/50 dark:bg-[#0B0B0E]"
     >
-      {/* Profile Picture */}
-      {/* <div className="relative-content flex justify-center items-center">
-        <div
-          ref={profileRef}
-          className="flex justify-center items-center bg-slate-300 dark:bg-slate-700 rounded-full w-72 h-72 overflow-hidden"
-        >
-          <Image src="/IMG_0606.jpg" alt="Profile" width={288} height={288} className="w-full h-full object-cover" priority />
+      <div className="max-w-7xl mx-auto">
+        {/* Section Index Header */}
+        <div className="about-fade flex items-center justify-between mb-16 pb-6 border-b border-zinc-200 dark:border-zinc-800/80 font-mono-meta text-xs">
+          <span className="text-amber-600 dark:text-amber-400 uppercase tracking-widest font-semibold">
+            01 // ENGINEERING PHILOSOPHY
+          </span>
+          <span className="text-zinc-400 dark:text-zinc-600">
+            SYSTEMS & ARCHITECTURE
+          </span>
         </div>
-      </div> */}
 
-      {/* Text Content */}
-      <section className="relative-content py-10 px-4 max-w-full text-center mx-auto text-gray-800 dark:text-gray-200">
-        <p
-          ref={(el) => {
-            if (el && !textRefs.current.includes(el)) textRefs.current.push(el);
-          }}
-          className="text-2xl md:text-2xl leading-relaxed mx-auto max-w-3xl"
-        >
-          I engineer{" "}
-          <motion.span
-            whileHover={hoverEffect}
-            style={cursorStyle}
-            className="font-bold text-gray-800 dark:text-gray-200 text-2xl md:text-2xl"
-          >
-            scalable, secure systems
-          </motion.span>{" "}
-          using{" "}
-          <motion.span
-            whileHover={hoverEffect}
-            style={cursorStyle}
-            className="font-bold text-gray-800 dark:text-gray-200 text-2xl md:text-2xl"
-          >
-            modern architectural patterns
-          </motion.span>{" "}
-          that prioritize performance, maintainability, and type safety.
-        </p>
-        <p
-          ref={(el) => {
-            if (el && !textRefs.current.includes(el)) textRefs.current.push(el);
-          }}
-          className="text-2xl md:text-2xl leading-relaxed mt-8 mx-auto max-w-3xl"
-        >
-          I go beyond simple implementation to{" "}
-          <motion.span
-            whileHover={hoverEffect}
-            style={cursorStyle}
-            className="font-bold text-gray-800 dark:text-gray-200 text-2xl md:text-2xl"
-          >
-            architect complex solutions
-          </motion.span>
-          . From{" "}
-          <motion.span
-            whileHover={hoverEffect}
-            style={cursorStyle}
-            className="font-bold text-gray-900 dark:text-gray-100 text-2xl md:text-2xl"
-          >
-            optimizing rendering performance
-          </motion.span>{" "}
-          to designing modular component systems, I ensure technical excellence
-          at every layer of the stack.
-        </p>
+        {/* Editorial Split Column */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left Callout Headline */}
+          <div className="about-fade lg:col-span-5">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 leading-tight">
+              Architecting systems designed for resilience, velocity & scale.
+            </h2>
+            <p className="mt-6 text-sm font-mono-meta text-zinc-500 dark:text-zinc-400 leading-relaxed uppercase tracking-wider">
+              [ CRAFTING THE MODERN WEB WITH TYPE-SAFETY & LOW LATENCY ]
+            </p>
+          </div>
 
-        <p
-          ref={(el) => {
-            if (el && !textRefs.current.includes(el)) textRefs.current.push(el);
-          }}
-          className="text-2xl md:text-2xl leading-relaxed mt-8 mx-auto max-w-3xl"
-        >
-          Let’s build software that determines the{" "}
-          <motion.span
-            whileHover={hoverEffect}
-            style={cursorStyle}
-            className="font-bold text-gray-900 dark:text-gray-100 text-3xl md:text-3xl"
-          >
-            future of the web
-          </motion.span>{" "}
-        </p>
-      </section>
-    </div>
+          {/* Right Narrative Paragraphs */}
+          <div className="about-fade lg:col-span-7 space-y-6 text-zinc-700 dark:text-zinc-300 font-sans text-lg sm:text-xl leading-relaxed">
+            <p>
+              I engineer{" "}
+              <strong className="font-semibold text-zinc-900 dark:text-zinc-50 underline decoration-amber-500/60 underline-offset-4">
+                scalable, secure systems
+              </strong>{" "}
+              using{" "}
+              <strong className="font-semibold text-zinc-900 dark:text-zinc-50 underline decoration-amber-500/60 underline-offset-4">
+                modern architectural patterns
+              </strong>{" "}
+              that prioritize performance, maintainability, and strict type
+              safety.
+            </p>
+            <p>
+              I go beyond simple implementation to architect complex web
+              solutions — from optimizing client rendering pipelines to
+              designing modular microservices and push notification engines.
+            </p>
+            <p className="text-zinc-900 dark:text-zinc-100 font-serif text-xl sm:text-2xl italic pt-2 border-l-2 border-amber-500 pl-4">
+              "Building software that defines the future of the web."
+            </p>
+          </div>
+        </div>
+
+        {/* 3 Editorial Pillar Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20 pt-12 border-t border-zinc-200 dark:border-zinc-800/80">
+          {[
+            {
+              num: "01",
+              title: "System Architecture",
+              desc: "Designing modular, decoupled TypeScript applications with predictable state, strict schema boundaries, and extensible patterns.",
+            },
+            {
+              num: "02",
+              title: "Performance Tuning",
+              desc: "Minimizing re-renders, optimizing bundle sizes, utilizing edge streaming, and delivering sub-second interaction speed.",
+            },
+            {
+              num: "03",
+              title: "Product Craft",
+              desc: "Fusing robust backend microservices with sleek, accessible user interfaces and micro-interactions.",
+            },
+          ].map((pillar) => (
+            <div
+              key={pillar.num}
+              className="about-fade group p-6 rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white/40 dark:bg-zinc-900/30 hover:border-amber-500/50 transition-colors"
+            >
+              <span className="font-mono-meta text-xs text-amber-600 dark:text-amber-400 font-medium">
+                // {pillar.num}
+              </span>
+              <h3 className="font-serif text-xl font-bold text-zinc-900 dark:text-zinc-100 mt-3 mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                {pillar.title}
+              </h3>
+              <p className="font-sans text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                {pillar.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 

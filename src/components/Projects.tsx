@@ -124,10 +124,10 @@ const ProjectCard = ({
 
   return (
     <div
-      className={`project-card-${index} bg-white dark:bg-[#121212] border border-green-700 dark:border-green-800 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col h-full group/card`}
+      className={`project-card-${index} bg-white dark:bg-[#111116] border border-zinc-200/90 dark:border-zinc-800/90 rounded-2xl overflow-hidden shadow-sm hover:border-amber-500/50 hover:shadow-xl transition-all duration-300 flex flex-col h-full group/card`}
     >
-      {/* Image Carousel */}
-      <div className="relative w-full aspect-video bg-gray-100 dark:bg-gray-900 overflow-hidden group mb-4 border-b border-green-700 dark:border-gray-800">
+      {/* Image Carousel Header */}
+      <div className="relative w-full aspect-video bg-zinc-100 dark:bg-zinc-950 overflow-hidden group border-b border-zinc-200/80 dark:border-zinc-800/80">
         <a
           href={project.projectUrl}
           target="_blank"
@@ -142,7 +142,7 @@ const ProjectCard = ({
               <Image
                 key={i}
                 src={img}
-                alt={`${project.title} - Image ${i + 1}`}
+                alt={`${project.title} - Screenshot ${i + 1}`}
                 width={800}
                 height={450}
                 className="w-full h-full object-cover flex-shrink-0"
@@ -150,9 +150,9 @@ const ProjectCard = ({
             ))}
           </div>
           {/* Live demo overlay */}
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-500 z-10 flex items-center justify-center">
-            <span className="bg-green-500 hover:bg-green-600 text-white px-6 py-2.5 rounded-full font-medium opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 shadow-lg flex items-center gap-2">
-              Live demo <FaArrowRight />
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors duration-500 z-10 flex items-center justify-center">
+            <span className="bg-amber-500 hover:bg-amber-600 text-zinc-950 font-mono-meta text-xs uppercase tracking-wider px-5 py-2.5 rounded-full font-semibold opacity-0 transform translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 shadow-md flex items-center gap-2">
+              LAUNCH LIVE SYSTEM <FaArrowRight size={12} />
             </span>
           </div>
         </a>
@@ -161,20 +161,20 @@ const ProjectCard = ({
           <div className="z-20 relative h-full pointer-events-none">
             <button
               onClick={prevImage}
-              className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-2 md:p-3 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 pointer-events-auto"
+              className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-amber-500 hover:text-zinc-950 text-white p-2 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 pointer-events-auto"
               aria-label="Previous Image"
             >
-              <FaChevronLeft size={16} />
+              <FaChevronLeft size={14} />
             </button>
             <button
               onClick={nextImage}
-              className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-2 md:p-3 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 pointer-events-auto"
+              className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-amber-500 hover:text-zinc-950 text-white p-2 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 pointer-events-auto"
               aria-label="Next Image"
             >
-              <FaChevronRight size={16} />
+              <FaChevronRight size={14} />
             </button>
             {/* Dots */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 pointer-events-auto">
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1.5 pointer-events-auto">
               {project.images.map((_: string, i: number) => (
                 <button
                   key={i}
@@ -183,7 +183,11 @@ const ProjectCard = ({
                     e.stopPropagation();
                     setCurrentImageIndex(i);
                   }}
-                  className={`h-1.5 md:h-2 rounded-full transition-all duration-300 ${i === currentImageIndex ? "bg-white w-6 md:w-8" : "bg-white/50 w-1.5 md:w-2 hover:bg-white/80"}`}
+                  className={`h-1 rounded-full transition-all duration-300 ${
+                    i === currentImageIndex
+                      ? "bg-amber-500 w-6"
+                      : "bg-white/40 w-2 hover:bg-white/80"
+                  }`}
                   aria-label={`Go to slide ${i + 1}`}
                 />
               ))}
@@ -193,27 +197,32 @@ const ProjectCard = ({
       </div>
 
       {/* Content Layer */}
-      <div className="p-5 flex flex-col flex-grow">
+      <div className="p-6 flex flex-col flex-grow">
         <a
           href={project.projectUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block group-hover/card:text-green-500 transition-colors duration-300"
+          className="inline-block group-hover/card:text-amber-600 dark:group-hover/card:text-amber-400 transition-colors duration-300"
         >
-          <h3 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-2 md:mb-3 font-signika decoration-2 decoration-green-500 underline-offset-4 group-hover/card:underline">
-            {project.title}
-          </h3>
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-xl md:text-2xl font-bold font-serif text-zinc-900 dark:text-zinc-50">
+              {project.title}
+            </h3>
+            <span className="font-mono-meta text-xs text-zinc-400 group-hover/card:text-amber-500">
+              ↗
+            </span>
+          </div>
         </a>
-        <p className="text-gray-600 dark:text-gray-400 mb-5 flex-grow leading-relaxed text-sm md:text-base">
+        <p className="text-zinc-600 dark:text-zinc-400 mb-6 flex-grow leading-relaxed font-sans text-sm md:text-base">
           {project.description}
         </p>
 
-        {/* Tools */}
-        <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-gray-100 dark:border-gray-800/60">
+        {/* Tech Stack Metadata Badges */}
+        <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-zinc-200/80 dark:border-zinc-800/80">
           {project.tools.map((tool: string, idx: number) => (
             <span
               key={idx}
-              className="text-[10px] md:text-xs font-semibold text-green-700 dark:text-green-400 bg-green-100 dark:bg-green-400/10 px-2.5 py-1 md:px-3 md:py-1.5 rounded-full dark:border dark:border-green-400/20"
+              className="text-[11px] font-mono-meta font-medium text-amber-700 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20"
             >
               {tool}
             </span>
@@ -228,7 +237,6 @@ const Projects = () => {
   const [activeTab, setActiveTab] = useState<"featured" | "all">("featured");
 
   useEffect(() => {
-    // Refresh ScrollTrigger to recalculate layout changes
     ScrollTrigger.refresh();
 
     const ctx = gsap.context(() => {
@@ -244,19 +252,17 @@ const Projects = () => {
           `.project-card-${originalIndex}`,
           {
             opacity: 0,
-            y: 50,
+            y: 40,
           },
           {
             opacity: 1,
             y: 0,
             scrollTrigger: {
               trigger: `.project-card-${originalIndex}`,
-              start: "top 90%", // Trigger animation when top of card is 90% in viewport
-              end: "bottom 20%",
-              scrub: true,
+              start: "top 90%",
               once: true,
             },
-            duration: 0.8,
+            duration: 0.6,
             ease: "power3.out",
           },
         );
@@ -272,53 +278,52 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="bg-gray-100 dark:bg-gray-900 min-h-screen py-20 px-4 sm:px-6 lg:px-8"
+      className="bg-stone-50 dark:bg-[#0B0B0E] py-24 px-6 md:px-12 border-t border-zinc-200 dark:border-zinc-800/80"
     >
       <div className="max-w-7xl mx-auto w-full">
-        {/* Header section */}
-        <div className="mb-14 text-center">
-          <div className="inline-block relative">
-            <h2 className="text-4xl md:text-5xl font-semibold text-gray-800 dark:text-gray-200 font-signika z-10 relative">
-              My work
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between pb-8 mb-12 border-b border-zinc-200 dark:border-zinc-800/80 gap-6">
+          <div>
+            <span className="font-mono-meta text-xs text-amber-600 dark:text-amber-400 uppercase tracking-widest font-semibold block mb-2">
+              02 // SELECTED WORK
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+              System Architecture & Applications
             </h2>
-            {/* Minimal accent matching the style */}
-            <div className="absolute -bottom-2 left-0 right-0 h-1 bg-green-500 rounded-full opacity-80"></div>
           </div>
-        </div>
 
-        {/* Tabs Control */}
-        <div className="flex justify-center mb-12">
-          <div className="relative flex p-1 bg-gray-200/60 dark:bg-gray-800/60 backdrop-blur-md rounded-full border border-gray-300/30 dark:border-gray-700/30">
+          {/* Filter Pills */}
+          <div className="flex p-1 bg-zinc-200/60 dark:bg-zinc-900/60 backdrop-blur-md rounded-full border border-zinc-300/40 dark:border-zinc-800/80 font-mono-meta text-xs">
             <button
               onClick={() => setActiveTab("featured")}
-              className={`relative px-6 py-2 text-sm md:text-base font-medium rounded-full transition-colors duration-300 z-10 focus:outline-none ${
+              className={`relative px-5 py-2 uppercase tracking-wider font-medium rounded-full transition-colors duration-300 z-10 focus:outline-none ${
                 activeTab === "featured"
-                  ? "text-white dark:text-gray-900"
-                  : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
+                  ? "text-zinc-950 dark:text-zinc-950"
+                  : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200"
               }`}
             >
-              Featured
+              FEATURED ({projects.filter((p) => p.featured).length})
               {activeTab === "featured" && (
                 <motion.div
                   layoutId="active-tab"
-                  className="absolute inset-0 bg-green-600 dark:bg-green-400 rounded-full -z-10"
+                  className="absolute inset-0 bg-amber-500 rounded-full -z-10"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
             </button>
             <button
               onClick={() => setActiveTab("all")}
-              className={`relative px-6 py-2 text-sm md:text-base font-medium rounded-full transition-colors duration-300 z-10 focus:outline-none ${
+              className={`relative px-5 py-2 uppercase tracking-wider font-medium rounded-full transition-colors duration-300 z-10 focus:outline-none ${
                 activeTab === "all"
-                  ? "text-white dark:text-gray-900"
-                  : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
+                  ? "text-zinc-950 dark:text-zinc-950"
+                  : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200"
               }`}
             >
-              All Projects
+              ALL SYSTEMS ({projects.length})
               {activeTab === "all" && (
                 <motion.div
                   layoutId="active-tab"
-                  className="absolute inset-0 bg-green-600 dark:bg-green-400 rounded-full -z-10"
+                  className="absolute inset-0 bg-amber-500 rounded-full -z-10"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}

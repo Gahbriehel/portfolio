@@ -1,14 +1,20 @@
 import { motion } from "framer-motion";
-import { FaLinkedin, FaGithub, FaTwitter, FaEnvelope } from "react-icons/fa";
-import { useState } from "react";
+import {
+  FaLinkedin,
+  FaGithub,
+  FaTwitter,
+  FaEnvelope,
+  FaArrowUpRightFromSquare,
+} from "react-icons/fa6";
+import { useState, useEffect } from "react";
 import Toast from "./UI/Toast";
 import emailjs from "@emailjs/browser";
-import { useEffect } from "react";
 
 const ContactPage = () => {
   useEffect(() => {
     emailjs.init({ publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY });
   }, []);
+
   const [toast, setToast] = useState<{
     message: string;
     type: "success" | "error";
@@ -19,26 +25,30 @@ const ContactPage = () => {
     isVisible: false,
   });
 
-  const icons = [
+  const socialLinks = [
     {
-      icon: <FaLinkedin />,
+      name: "LinkedIn",
+      handle: "in/gahbriehel",
       link: "https://linkedin.com/in/gahbriehel",
-      color: "#0077B5",
+      icon: <FaLinkedin className="text-lg" />,
     },
     {
-      icon: <FaGithub />,
+      name: "GitHub",
+      handle: "@Gahbriehel",
       link: "https://github.com/Gahbriehel",
-      color: "#171515",
+      icon: <FaGithub className="text-lg" />,
     },
     {
-      icon: <FaTwitter />,
+      name: "Twitter / X",
+      handle: "@Gahbriehel1",
       link: "https://twitter.com/Gahbriehel1",
-      color: "#1DA1F2",
+      icon: <FaTwitter className="text-lg" />,
     },
     {
-      icon: <FaEnvelope />,
+      name: "Direct Email",
+      handle: "babatise002@gmail.com",
       link: "mailto:babatise002@gmail.com",
-      color: "#D44638",
+      icon: <FaEnvelope className="text-lg" />,
     },
   ];
 
@@ -51,49 +61,141 @@ const ContactPage = () => {
   };
 
   return (
-    <>
-      <div className="relative z-10 dark:bg-gray-900 min-h-screen p-4">
-        <div>
-          <h1 className="relative-content text-4xl font-semibold text-gray-800 dark:text-gray-200 pt-10 ml-6 font-signika text-4xl">
-            Let's Connect
-          </h1>
+    <section
+      id="contact"
+      className="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-zinc-200 dark:border-zinc-800/80"
+    >
+      <Toast
+        message={toast.message}
+        type={toast.type}
+        isVisible={toast.isVisible}
+        onClose={closeToast}
+      />
+
+      {/* Editorial Header */}
+      <div className="mb-16">
+        <div className="flex items-center gap-3 font-mono-meta text-xs uppercase tracking-widest text-amber-600 dark:text-amber-400 mb-3">
+          <span className="w-2 h-2 rounded-full bg-amber-500 inline-block animate-pulse"></span>
+          <span>[ 04 // INITIATE DIALOGUE ]</span>
         </div>
 
-        <div className="min-h-screen flex flex-col items-center text-gray-800 dark:text-gray-200 font-signika p-4 md:p-8 transition-colors duration-300 ">
-          <Toast
-            message={toast.message}
-            type={toast.type}
-            isVisible={toast.isVisible}
-            onClose={closeToast}
-          />
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <h2 className="font-serif text-4xl md:text-6xl font-light tracking-tight text-zinc-900 dark:text-stone-100">
+            Let's Build{" "}
+            <span className="italic font-normal text-amber-600 dark:text-amber-400">
+              Together.
+            </span>
+          </h2>
+          <p className="font-mono-meta text-xs text-zinc-500 dark:text-zinc-400 max-w-md uppercase tracking-wider leading-relaxed">
+            Available for select frontend architecture, design engineering
+            contracts & full-time positions.
+          </p>
+        </div>
+      </div>
 
-          {/* Header Section */}
-          <motion.div
-            className="text-center w-full lg:w-2/3 mb-12 mt-10 relative z-10"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-300">
-              I'm always excited to work on new projects and collaborate with
-              amazing people. Whether you have a project in mind, need technical
-              consultation, or just want to say hello, I'd love to hear from
-              you!
+      {/* Split Editorial Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        {/* Left Column: Direct Info & Social Matrix */}
+        <div className="lg:col-span-5 space-y-8">
+          {/* Status Card */}
+          <div className="p-6 bg-zinc-50 dark:bg-[#0E0E12] border border-zinc-200 dark:border-zinc-800 rounded-none relative">
+            <span className="absolute top-0 right-0 w-3 h-3 border-t border-r border-amber-500"></span>
+            <div className="font-mono-meta text-[10px] uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-2">
+              CURRENT STATUS
+            </div>
+            <div className="flex items-center gap-2 text-sm font-semibold text-zinc-900 dark:text-stone-100">
+              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+              Open to New Projects & Contracts
+            </div>
+            <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed font-sans">
+              Currently accepting inquiry calls for web application development,
+              interactive UI systems, and design system engineering.
             </p>
-          </motion.div>
+          </div>
 
-          {/* Form Section */}
+          {/* Contact Details */}
+          <div className="space-y-4 font-mono-meta text-xs">
+            <div className="flex justify-between items-center py-3 border-b border-zinc-200 dark:border-zinc-800">
+              <span className="text-zinc-400 dark:text-zinc-500 uppercase">
+                Location
+              </span>
+              <span className="text-zinc-800 dark:text-zinc-200 font-medium">
+                Remote / UTC+1
+              </span>
+            </div>
+            <div className="flex justify-between items-center py-3 border-b border-zinc-200 dark:border-zinc-800">
+              <span className="text-zinc-400 dark:text-zinc-500 uppercase">
+                Response Time
+              </span>
+              <span className="text-amber-600 dark:text-amber-400 font-medium">
+                &lt; 24 Hours
+              </span>
+            </div>
+            <div className="flex justify-between items-center py-3 border-b border-zinc-200 dark:border-zinc-800">
+              <span className="text-zinc-400 dark:text-zinc-500 uppercase">
+                Direct Mail
+              </span>
+              <a
+                href="mailto:babatise002@gmail.com"
+                className="text-zinc-800 dark:text-zinc-200 hover:text-amber-600 dark:hover:text-amber-400 cursor-pointer transition-colors font-medium"
+              >
+                babatise002@gmail.com
+              </a>
+            </div>
+          </div>
+
+          {/* Social Links Matrix */}
+          <div>
+            <h3 className="font-mono-meta text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-4">
+              // CONNECT ON SOCIAL
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {socialLinks.map((item, idx) => (
+                <a
+                  key={idx}
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between p-4 bg-zinc-50 dark:bg-[#0E0E12] border border-zinc-200 dark:border-zinc-800 hover:border-amber-500/50 dark:hover:border-amber-500/50 cursor-pointer transition-all relative z-10"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-zinc-500 dark:text-zinc-400 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                      {item.icon}
+                    </span>
+                    <div>
+                      <div className="text-xs font-semibold text-zinc-800 dark:text-stone-200 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                        {item.name}
+                      </div>
+                      <div className="font-mono-meta text-[10px] text-zinc-400 dark:text-zinc-500">
+                        {item.handle}
+                      </div>
+                    </div>
+                  </div>
+                  <FaArrowUpRightFromSquare className="text-[10px] text-zinc-400 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column: High-Craft Editorial Form */}
+        <div className="lg:col-span-7">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="w-full lg:w-2/3 bg-white/30 dark:bg-black/20 backdrop-blur-md p-8 md:p-10 rounded-2xl shadow-xl border border-gray-200/20 mb-16"
+            className="bg-zinc-50 dark:bg-[#0B0B0E] border border-zinc-200 dark:border-zinc-800 p-8 md:p-10 relative"
           >
-            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
-              Send a Message
-            </h2>
+            <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-6 mb-8">
+              <h3 className="font-serif text-2xl text-zinc-900 dark:text-stone-100 font-light">
+                Send a Message
+              </h3>
+              <span className="font-mono-meta text-[10px] text-amber-600 dark:text-amber-400 uppercase tracking-widest">
+                [ FORM // 01 ]
+              </span>
+            </div>
+
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -103,7 +205,7 @@ const ContactPage = () => {
                 ) as HTMLButtonElement;
                 const originalText = btn.innerText;
 
-                btn.innerText = "Sending...";
+                btn.innerText = "SENDING INQUIRY...";
                 btn.disabled = true;
 
                 emailjs
@@ -127,44 +229,46 @@ const ContactPage = () => {
                     btn.disabled = false;
                   });
               }}
-              className="flex flex-col gap-8"
+              className="space-y-6"
             >
               <input
                 type="hidden"
                 name="time"
                 value={new Date().toLocaleString()}
               />
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium mb-2 pl-1"
+                    className="block font-mono-meta text-[11px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2"
                   >
-                    Name
+                    Your Name *
                   </label>
                   <input
                     type="text"
                     id="name"
                     name="name"
                     required
-                    className="w-full p-4 rounded-lg bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0077B5] transition-all"
-                    placeholder="John Doe"
+                    className="w-full px-4 py-3 bg-white dark:bg-[#141419] border border-zinc-200 dark:border-zinc-800 text-sm text-zinc-900 dark:text-stone-100 placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-amber-500 dark:focus:border-amber-400 transition-colors font-sans"
+                    placeholder="e.g. Sarah Jenkins"
                   />
                 </div>
+
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium mb-2 pl-1"
+                    className="block font-mono-meta text-[11px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2"
                   >
-                    Email Address
+                    Email Address *
                   </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
                     required
-                    className="w-full p-4 rounded-lg bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0077B5] transition-all"
-                    placeholder="john@example.com"
+                    className="w-full px-4 py-3 bg-white dark:bg-[#141419] border border-zinc-200 dark:border-zinc-800 text-sm text-zinc-900 dark:text-stone-100 placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-amber-500 dark:focus:border-amber-400 transition-colors font-sans"
+                    placeholder="s.jenkins@company.com"
                   />
                 </div>
               </div>
@@ -172,75 +276,51 @@ const ContactPage = () => {
               <div>
                 <label
                   htmlFor="subject"
-                  className="block text-sm font-medium mb-2 pl-1"
+                  className="block font-mono-meta text-[11px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2"
                 >
-                  Subject
+                  Subject / Inquiry Type *
                 </label>
                 <input
                   type="text"
                   id="subject"
                   name="subject"
                   required
-                  className="w-full p-4 rounded-lg bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0077B5] transition-all"
-                  placeholder="Project Inquiry"
+                  className="w-full px-4 py-3 bg-white dark:bg-[#141419] border border-zinc-200 dark:border-zinc-800 text-sm text-zinc-900 dark:text-stone-100 placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-amber-500 dark:focus:border-amber-400 transition-colors font-sans"
+                  placeholder="Frontend Development / Design System Consulting"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium mb-2 pl-1"
+                  className="block font-mono-meta text-[11px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2"
                 >
-                  Message
+                  Message Details *
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   required
                   rows={5}
-                  className="w-full p-4 rounded-lg bg-gray-50/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#0077B5] transition-all resize-none"
-                  placeholder="Tell me about your project..."
+                  className="w-full px-4 py-3 bg-white dark:bg-[#141419] border border-zinc-200 dark:border-zinc-800 text-sm text-zinc-900 dark:text-stone-100 placeholder-zinc-400 dark:placeholder-zinc-600 focus:outline-none focus:border-amber-500 dark:focus:border-amber-400 transition-colors resize-none font-sans"
+                  placeholder="Please describe project scope, timelines, or role details..."
                 ></textarea>
               </div>
 
               <button
                 type="submit"
-                className="mt-4 w-full bg-[#0077B5] hover:bg-[#006097] text-white font-bold text-sm p-4 rounded-lg transition-colors duration-300 transform hover:scale-[1.01] shadow-lg"
+                className="w-full py-4 px-6 bg-zinc-900 dark:bg-stone-100 hover:bg-amber-600 dark:hover:bg-amber-400 text-stone-100 dark:text-zinc-900 hover:text-white dark:hover:text-zinc-900 font-mono-meta text-xs uppercase tracking-widest font-semibold transition-all duration-300 flex items-center justify-center gap-2 group"
               >
-                Send Message
+                <span>SEND INQUIRY</span>
+                <span className="group-hover:translate-x-1 transition-transform">
+                  →
+                </span>
               </button>
             </form>
           </motion.div>
-
-          {/* Reach Me Section */}
-          <motion.div
-            className="flex flex-col items-center gap-6 mb-12 relative z-10"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-2xl font-semibold opacity-80 uppercase tracking-widest">
-              Reach Me
-            </h3>
-            <div className="flex gap-8 md:gap-12">
-              {icons.map((item, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.2, color: item.color }}
-                  whileTap={{ scale: 0.9 }}
-                  className="text-4xl md:text-5xl cursor-pointer text-gray-500 dark:text-gray-400"
-                  style={{ transition: "color 0.3s ease" }}
-                  onClick={() => window.open(item.link, "_blank")}
-                >
-                  {item.icon}
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

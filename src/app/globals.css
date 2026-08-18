@@ -1,60 +1,71 @@
-@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@900&display=swap");
-@import url("https://api.fontshare.com/v2/css?f[]=pachang@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..700;1,300..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  .font-cursive {
-    font-family: "Pacifico", cursive;
+  html {
+    font-family:
+      "Plus Jakarta Sans",
+      system-ui,
+      -apple-system,
+      sans-serif;
   }
-  .font-extrabold {
-    font-family: "Roboto Black", sans-serif;
+
+  body {
+    @apply bg-stone-50 text-zinc-900 dark:bg-[#0B0B0E] dark:text-zinc-100 antialiased selection:bg-amber-500/20 selection:text-amber-500;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-serif-display {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+
+  .font-mono-meta {
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .font-sans-body {
+    font-family: "Plus Jakarta Sans", sans-serif;
   }
 }
 
-/* ---- reset ---- */
-body {
-  margin: 0;
-  font:
-    normal 75% Arial,
-    Helvetica,
-    sans-serif;
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-canvas {
-  display: block;
-  vertical-align: bottom;
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-300 dark:bg-zinc-800 rounded-full hover:bg-zinc-400 dark:hover:bg-zinc-700 transition-colors;
 }
 
 /* ---- particles.js container ---- */
-#particles-js {
+#particles-js,
+#particles-js canvas {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #e3e5e9;
-  background-size: cover;
-  background-position: 50% 50%;
+  pointer-events: none !important;
+}
+
+#particles-js {
+  background-color: #fafafa;
+  opacity: 0.4;
 }
 
 .dark #particles-js {
-  background-color: #111827;
+  background-color: #0b0b0e;
+  opacity: 0.3;
 }
 
-/* Make sure the content has a higher z-index */
 .relative-content {
-  position: relative; /* Ensure the position is relative */
-  z-index: 10; /* Higher z-index than the particles background */
-}
-
-@font-face {
-  font-family: "Panchang";
-  src: url("/fonts/Panchang-Bold.otf") format("opentype");
-  font-weight: bold;
-  font-style: normal;
-}
-
-.font-panchang {
-  font-family: "Panchang", sans-serif;
+  position: relative;
+  z-index: 10;
 }
