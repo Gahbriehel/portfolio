@@ -26,6 +26,36 @@ const projects = [
     ],
     projectUrl: "https://nudger.gdome.xyz",
     featured: true,
+    features: [
+      "Behavioral nudges and cognitive support routines to reduce start-friction.",
+      "Powerful recurrence engine for tracking multi-step dynamic tasks.",
+      "Proactive push notification service with cron job synchronization.",
+      "Interactive dashboard with an 'Urgent Nudges' priority widget.",
+    ],
+  },
+  {
+    title: "Qrow - Universal QR & SKU Generator",
+    description:
+      "An all-in-one suite of professional utility tools designed for generating highly customizable vector QR codes and print-ready SKU labels. Built for e-commerce, warehousing, and general branding. Features dynamic color templates, visual alignment guides, SVG/PNG exporting, and thermal printing presets.",
+    tools: [
+      "Next.js",
+      "TypeScript",
+      "TailwindCSS",
+      "html2canvas-pro",
+      "JsBarcode",
+      "qrcode.react",
+      "react-to-print",
+    ],
+    images: ["/images/qrow1.png", "/images/qrow2.png"],
+    projectUrl: "https://qrow.gdome.xyz",
+    featured: true,
+    features: [
+      "Universal QR generator supporting URLs, Wi-Fi setup, email formats, and raw text.",
+      "Customizable QR badges with multiple layout styles, custom frames, and logo overlays.",
+      "SKU Label generator yielding professional Code 128 barcodes or custom QR formats.",
+      'Thermal printer layouts calibrated for industry-standard 2" × 1" sticker labels.',
+      "High-resolution canvas rendering for vector SVG and scaled PNG downloads.",
+    ],
   },
   {
     title: "OneflarePOS",
@@ -39,6 +69,12 @@ const projects = [
     ],
     projectUrl: "https://pos.oneflaretech.com",
     featured: true,
+    features: [
+      "Multi-branch data coordination and real-time operations reporting.",
+      "Seamless inventory control, sales metrics, and automated alerts.",
+      "Supplier management workflows with production target monitoring.",
+      "Interactive data visualizations and detailed analytics panels.",
+    ],
   },
   {
     title: "Bizsuite - Retail Management System",
@@ -52,6 +88,12 @@ const projects = [
     ],
     projectUrl: "https://bizsuiteone.vercel.app",
     featured: true,
+    features: [
+      "Centralized performance analytics and expense tracking dashboards.",
+      "Granular role-based access control (RBAC) protecting internal routes.",
+      "Secure document management for invoicing, receipts, and statements.",
+      "Automated reporting exports and clean data-table integrations.",
+    ],
   },
   {
     title: "Bellgold consulting Website",
@@ -60,25 +102,13 @@ const projects = [
     tools: ["HTML", "Tailwind", "Vanilla Js", "Vercel"],
     images: ["/bellgold.png"],
     projectUrl: "https://bellgold-gn1o.vercel.app/",
-    featured: true,
-  },
-  {
-    title: "SKU Generator Microservice",
-    description:
-      "A specialized microservice designed to help e-commerce businesses generate and manage Stock Keeping Units (SKUs) effectively and reliably.",
-    tools: ["Next.js", "TypeScript", "Tailwind", "Vercel"],
-    images: ["/crow.png"],
-    projectUrl: "https://crow-7nyj.vercel.app/",
     featured: false,
+    features: [
+      "Modern, responsive consulting showcase optimized for speed and SEO.",
+      "Interactive GSAP and CSS animations for premium brand feel.",
+      "Clean vanilla JavaScript architecture requiring zero heavy framework bloat.",
+    ],
   },
-  // {
-  //   title: "Ecommerce",
-  //   description:
-  //     "An intuitive and fast e-commerce platform built with React, focusing on delivering an excellent user shopping experience and seamless navigation.",
-  //   tools: ["React.js", "Tailwind"],
-  //   images: ["/onecommerce.png"],
-  //   projectUrl: "https://ecommerce-test0.vercel.app/",
-  // },
 ];
 
 gsap.registerPlugin(ScrollTrigger);
@@ -94,6 +124,7 @@ const ProjectCard = ({
     images: string[];
     projectUrl: string;
     featured?: boolean;
+    features?: string[];
   };
   index: number;
 }) => {
@@ -146,6 +177,7 @@ const ProjectCard = ({
                 width={800}
                 height={450}
                 className="w-full h-full object-cover flex-shrink-0"
+                unoptimized
               />
             ))}
           </div>
@@ -213,9 +245,44 @@ const ProjectCard = ({
             </span>
           </div>
         </a>
-        <p className="text-zinc-600 dark:text-zinc-400 mb-6 flex-grow leading-relaxed font-sans text-sm md:text-base">
-          {project.description}
-        </p>
+
+        <div className="flex flex-col flex-grow mb-6">
+          <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed font-sans text-sm md:text-base mb-4">
+            {project.description}
+          </p>
+
+          {/* Key Features */}
+          {project.features && project.features.length > 0 && (
+            <div className="mt-2">
+              <h4 className="text-xs font-mono-meta font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-2.5">
+                Key Capabilities
+              </h4>
+              <ul className="space-y-2">
+                {project.features.map((feature: string, idx: number) => (
+                  <li
+                    key={idx}
+                    className="flex items-start gap-2.5 text-xs md:text-sm text-zinc-600 dark:text-zinc-400 font-sans leading-snug"
+                  >
+                    <svg
+                      className="w-3.5 h-3.5 text-amber-500 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
 
         {/* Tech Stack Metadata Badges */}
         <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-zinc-200/80 dark:border-zinc-800/80">
